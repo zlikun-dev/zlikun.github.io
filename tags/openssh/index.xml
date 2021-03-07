@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenSSH on 负熵为生</title>
+    <link>https://zlikun.github.io/tags/openssh/</link>
+    <description>Recent content in OpenSSH on 负熵为生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 23 Feb 2020 20:04:44 +0800</lastBuildDate><atom:link href="https://zlikun.github.io/tags/openssh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SSH基本用法</title>
+      <link>https://zlikun.github.io/post/linux/ssh%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Sun, 23 Feb 2020 20:04:44 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/post/linux/ssh%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</guid>
+      <description>生成密钥 # 生成RSA密钥对，默认存储于 ~/.ssh/ 目录下，-C 参数指定备注信息 $ ssh-keygen -t rsa [-C &amp;quot;zlikun-dev@hotmail.com&amp;quot;] # ~/.ssh/id_rsa # ~/.ssh/id_rsa.pub # 查看 ssh-keygen 帮助信息 $ man ssh-keygen # 分发密钥，默认发送 ~/.ssh/id_rsa.pub 文件，也可以通过 -i 显示指定 $ ssh-copy-id [-i id_rsa.pub] &amp;lt;username&amp;gt;@&amp;lt;host&amp;gt;[:&amp;lt;port&amp;gt;] # 实际上是把密钥追加到目标服务器的 ~/.ssh/authorized_keys 文件中，所以使用其它方式追加都是可以的 # 如果是第一次手工创建文件，务必注意文件权限问题，设置为只有当前用户有读写权限（600或644）即可 $ ls -al ~/.ssh/authorized_keys -rw------- 1 root root 808 Jan 31 18:52 /root/.ssh/authorized_keys # chmod 600 /root/.ssh/authorized_keys 密钥登录 # 参考上面的步骤将公钥添加到目标服务器上 # 修改目标服务器的SSH配置 $ vim /etc/ssh/sshd_config # 允许密钥认证 PubkeyAuthentication yes # 指定密钥路径（默认值） AuthorizedKeysFile .</description>
+    </item>
+    
+  </channel>
+</rss>

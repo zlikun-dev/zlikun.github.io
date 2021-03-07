@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on 负熵为生</title>
+    <link>https://zlikun.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on 负熵为生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 23 Feb 2020 20:06:40 +0800</lastBuildDate><atom:link href="https://zlikun.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo入门</title>
+      <link>https://zlikun.github.io/post/hugo/01-hugo%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Sun, 23 Feb 2020 20:06:40 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/post/hugo/01-hugo%E5%85%A5%E9%97%A8/</guid>
+      <description>官方网站
+ Hugo 是一个静态网页生成程序，基于Golang实现，但其打包后的程序不依赖外部环境，这点要比Hexo和Jekyll要好一些，另外因为是Golang实现的，其运行速度非常快，笔者选择Hugo做为静博客的生成程序
+ 安装 https://gohugo.io/getting-started/installing/
+# 笔者使用Manjaro系统（Linux）做为开发桌面系统， # 可以直接通pacman命令来安装，其它系统的安装方法参考官方文档 $ sudo pacman -S hugo # 查看版本以确认是否成功安装 $ hugo version Hugo Static Site Generator v0.64.0/extended linux/amd64 ... 示例 https://gohugo.io/getting-started/quick-start/
+https://gohugo.io/getting-started/usage/
+# 通过 help 子命令可以查看 hugo 的所有命令和子命令用法， # 当然你也可以通过 man 来查看 # 创建站点，需要指定一个目录，需要注意这个目录可以不存在， # 但如果存在，则必须是一个空目录 $ hugo new site hugo.zlikun.com # 目录结构 $ tree hugo.zlikun.com/ hugo.zlikun.com/ ├── archetypes │ └── default.md ├── config.toml ├── content ├── data ├── layouts ├── static └── themes 6 directories, 2 files # 最主要的几个目录/文件分别是： # config.</description>
+    </item>
+    
+  </channel>
+</rss>

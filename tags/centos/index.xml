@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CentOS on 负熵为生</title>
+    <link>https://zlikun.github.io/tags/centos/</link>
+    <description>Recent content in CentOS on 负熵为生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 18 Mar 2020 01:52:17 +0800</lastBuildDate><atom:link href="https://zlikun.github.io/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CentOS-7安装后需要做的几件事</title>
+      <link>https://zlikun.github.io/post/linux/centos-7%E5%AE%89%E8%A3%85%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E4%BA%8B/</link>
+      <pubDate>Wed, 18 Mar 2020 01:52:17 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/post/linux/centos-7%E5%AE%89%E8%A3%85%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E4%BA%8B/</guid>
+      <description>修改主机名 $ hostnamectl set-hostname template 设置静态IP # 从 CentOS-7 就开始推荐使用 nmcli 来配置网络了（CentOS-8同样适用） # https://andyx.net/configuring_static_ip_address_in_rhel8_centos8_system_with_nmcli_nmtui_ifcfg/ # 配置IP $ nmcli con mod enp0s3 ipv4.addresses 192.168.1.100/24 # 配置网关 $ nmcli con mod enp0s3 ipv4.gateway 192.168.1.1 # 设置手动模式（dhcp = auto, static = manual） $ nmcli con mod enp0s3 ipv4.method manual # 配置DNS $ nmcli con mod enp0s3 ipv4.dns &amp;quot;8.8.8.8&amp;quot; # 配置开机启动 $ nmcli con mod enp0s3 connection.autoconnect yes # 实际上述命令执行结果依然是存储在 /etc/sysconfig/network-scripts/ifcfg-* 文件中，所以直接按原有方式修改该文件也是可以的 SSH公钥认证 # 密码认证常常不安全，所以采用公钥认证 # 修改 /etc/ssh/sshd_config 文件 # 关闭密码认证 PasswordAuthentication no # 启用公钥认证 PubkeyAuthentication yes # 重启sshd服务即生效 $ systemctl restart sshd # 注意要先将客户机的公钥上传至目标服务器上，否则后面可能就没办法ssh连过去了（密码认证被禁） # 客户机上生成公私钥命令 $ ssh-keygen -t rsa -C &amp;quot;zlikun@studio&amp;quot; # 会生成公私钥文件，私钥文件应妥善保存，不要外泄 # ~/.</description>
+    </item>
+    
+  </channel>
+</rss>

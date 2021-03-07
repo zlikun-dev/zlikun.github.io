@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>直播 on 负熵为生</title>
+    <link>https://zlikun.github.io/tags/%E7%9B%B4%E6%92%AD/</link>
+    <description>Recent content in 直播 on 负熵为生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 08 Mar 2020 13:22:01 +0800</lastBuildDate><atom:link href="https://zlikun.github.io/tags/%E7%9B%B4%E6%92%AD/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nginx搭建直播服务</title>
+      <link>https://zlikun.github.io/post/nginx/nginx%E6%90%AD%E5%BB%BA%E7%9B%B4%E6%92%AD%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Sun, 08 Mar 2020 13:22:01 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/post/nginx/nginx%E6%90%AD%E5%BB%BA%E7%9B%B4%E6%92%AD%E6%9C%8D%E5%8A%A1/</guid>
+      <description>使用Nginx搭建RTMP直播流服务，提供直播流推送、直播播放、认证鉴权等功能
+ 协议  三大直播协议 RTMP、HTTP-FLV、HLS，RTMP是Adobe公司为Flash播放器开发的私有直播协议，FLV是Adobe公司推出的另一种视频格式，而HTTP-FLV就是将流媒体数据封装成FLV格式并通过HTTP协议传输给客户端，而HLS则是Apple公司基于HTTP协议开发的流媒体传输协议，它会在服务器端将流媒体数据切割成连续的时长较短的ts小文件，并通过m3u8索引文件按序访问ts文件，而客户端只需要按序从服务器上获取ts文件来播放即可。一般RTMP在直播推流中用的多，而HLS则比较适合来播放视频用，但其会生成海量ts小文件，从而造成存储困难，所以一般使用云存储服务（七牛、阿里云等）比较好。
+ 参考
+ https://www.cnblogs.com/upyun/p/9881865.html https://www.jianshu.com/p/32417d8ee5b6  安装 https://github.com/arut/nginx-rtmp-module
+# 系统为 CentOS-7 ，使用 YUM 安装了 Nginx，为了添加 nginx-rtmp-module 模块，所以需要重新编译安装 # 通过 `nginx -V` 命令查看其原始编译信息，重点是其已安装的模块，后面编译安装时这些模块一并装上 $ nginx -V nginx version: nginx/1.16.1 built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC) built with OpenSSL 1.0.2k-fips 26 Jan 2017 TLS SNI support enabled ... ... # http://nginx.org/en/docs/install.html # http://nginx.org/en/docs/configure.html # 下载源码，版本与当前使用 nginx 版本一致 $ curl -OL http://nginx.org/download/nginx-1.16.1.tar.gz $ tar zxvf nginx-1.</description>
+    </item>
+    
+  </channel>
+</rss>

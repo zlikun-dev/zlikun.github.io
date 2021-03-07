@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CI/CD on 负熵为生</title>
+    <link>https://zlikun.github.io/tags/ci/cd/</link>
+    <description>Recent content in CI/CD on 负熵为生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language><atom:link href="https://zlikun.github.io/tags/ci/cd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gitea安装</title>
+      <link>https://zlikun.github.io/post/devops/gitea%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Wed, 18 Mar 2020 22:48:27 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/post/devops/gitea%E5%AE%89%E8%A3%85/</guid>
+      <description>资料  https://docs.gitea.io/zh-cn/  准备 # 数据库（MySQL） # https://docs.gitea.io/zh-cn/database-prep/ # 创建数据库 &amp;gt; CREATE DATABASE DB_GITEA CHARACTER SET &#39;utf8mb4&#39; COLLATE &#39;utf8mb4_unicode_ci&#39;; # 创建用户 &amp;gt; CREATE USER &#39;gitea&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;Gitea!2020&#39;; # 用户授权 &amp;gt; GRANT ALL PRIVILEGES ON DB_GITEA.* TO &#39;gitea&#39;@&#39;%&#39;; # 刷新权限，立即生效 &amp;gt; FLUSH PRIVILEGES; # 用户 $ useradd gitea 安装 # 安装 # https://docs.gitea.io/zh-cn/install-from-binary/ # https://docs.gitea.io/zh-cn/install-from-package/ # https://docs.gitea.io/zh-cn/install-from-source/ $ curl -L https://dl.gitea.io/gitea/1.11.2/gitea-1.11.2-linux-amd64 -o /usr/local/bin/gitea $ chmod +x /usr/local/bin/gitea # 测试 $ gitea -v Gitea version 1.</description>
+    </item>
+    
+  </channel>
+</rss>

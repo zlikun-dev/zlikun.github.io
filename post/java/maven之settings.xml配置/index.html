@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>负熵为生  | Maven之settings.xml配置</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.81.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.1cb140d8ba31d5b2f1114537dd04802a.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+    
+
+    
+    
+    <meta property="og:title" content="Maven之settings.xml配置" />
+<meta property="og:description" content="&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the &#34;License&#34;); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &#34;AS IS&#34; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zlikun.github.io/post/java/maven%E4%B9%8Bsettings.xml%E9%85%8D%E7%BD%AE/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-18T22:10:13&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-18T22:10:13&#43;08:00" />
+
+<meta itemprop="name" content="Maven之settings.xml配置">
+<meta itemprop="description" content="&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the &#34;License&#34;); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &#34;AS IS&#34; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied."><meta itemprop="datePublished" content="2020-03-18T22:10:13&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-18T22:10:13&#43;08:00" />
+<meta itemprop="wordCount" content="1223">
+<meta itemprop="keywords" content="Maven,Java," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Maven之settings.xml配置"/>
+<meta name="twitter:description" content="&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the &#34;License&#34;); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &#34;AS IS&#34; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://zlikun.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      负熵为生
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+<a href="https://twitter.com/zlikun" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://github.com/zlikun" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://zlikun.github.io/post/java/maven%E4%B9%8Bsettings.xml%E9%85%8D%E7%BD%AE/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://zlikun.github.io/post/java/maven%E4%B9%8Bsettings.xml%E9%85%8D%E7%BD%AE/&amp;text=Maven%e4%b9%8bsettings.xml%e9%85%8d%e7%bd%ae" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://zlikun.github.io/post/java/maven%E4%B9%8Bsettings.xml%E9%85%8D%E7%BD%AE/&amp;title=Maven%e4%b9%8bsettings.xml%e9%85%8d%e7%bd%ae" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+      <h1 class="f1 athelas mt3 mb1">Maven之settings.xml配置</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-03-18T22:10:13&#43;08:00">March 18, 2020</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+
+<span style="color:#75715e">&lt;!--
+</span><span style="color:#75715e">Licensed to the Apache Software Foundation (ASF) under one
+</span><span style="color:#75715e">or more contributor license agreements.  See the NOTICE file
+</span><span style="color:#75715e">distributed with this work for additional information
+</span><span style="color:#75715e">regarding copyright ownership.  The ASF licenses this file
+</span><span style="color:#75715e">to you under the Apache License, Version 2.0 (the
+</span><span style="color:#75715e">&#34;License&#34;); you may not use this file except in compliance
+</span><span style="color:#75715e">with the License.  You may obtain a copy of the License at
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">    http://www.apache.org/licenses/LICENSE-2.0
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">Unless required by applicable law or agreed to in writing,
+</span><span style="color:#75715e">software distributed under the License is distributed on an
+</span><span style="color:#75715e">&#34;AS IS&#34; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+</span><span style="color:#75715e">KIND, either express or implied.  See the License for the
+</span><span style="color:#75715e">specific language governing permissions and limitations
+</span><span style="color:#75715e">under the License.
+</span><span style="color:#75715e">--&gt;</span>
+
+<span style="color:#75715e">&lt;!--
+</span><span style="color:#75715e"> | This is the configuration file for Maven. It can be specified at two levels:
+</span><span style="color:#75715e"> |
+</span><span style="color:#75715e"> |  1. User Level. This settings.xml file provides configuration for a single user,
+</span><span style="color:#75715e"> |                 and is normally provided in ${user.home}/.m2/settings.xml.
+</span><span style="color:#75715e"> |
+</span><span style="color:#75715e"> |                 NOTE: This location can be overridden with the CLI option:
+</span><span style="color:#75715e"> |
+</span><span style="color:#75715e"> |                 -s /path/to/user/settings.xml
+</span><span style="color:#75715e"> |
+</span><span style="color:#75715e"> |  2. Global Level. This settings.xml file provides configuration for all Maven
+</span><span style="color:#75715e"> |                 users on a machine (assuming they&#39;re all using the same Maven
+</span><span style="color:#75715e"> |                 installation). It&#39;s normally provided in
+</span><span style="color:#75715e"> |                 ${maven.home}/conf/settings.xml.
+</span><span style="color:#75715e"> |
+</span><span style="color:#75715e"> |                 NOTE: This location can be overridden with the CLI option:
+</span><span style="color:#75715e"> |
+</span><span style="color:#75715e"> |                 -gs /path/to/global/settings.xml
+</span><span style="color:#75715e"> |
+</span><span style="color:#75715e"> | The sections in this sample file are intended to give you a running start at
+</span><span style="color:#75715e"> | getting the most out of your Maven installation. Where appropriate, the default
+</span><span style="color:#75715e"> | values (values used when the setting is not specified) are provided.
+</span><span style="color:#75715e"> |
+</span><span style="color:#75715e"> |--&gt;</span>
+<span style="color:#f92672">&lt;settings</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://maven.apache.org/SETTINGS/1.0.0&#34;</span> 
+  <span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> <span style="color:#a6e22e">xsi:schemaLocation=</span><span style="color:#e6db74">&#34;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&#34;</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#75715e">&lt;!-- localRepository
+</span><span style="color:#75715e">   | The path to the local repository maven will use to store artifacts.
+</span><span style="color:#75715e">   |
+</span><span style="color:#75715e">   | Default: ${user.home}/.m2/repository
+</span><span style="color:#75715e">  &lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;
+</span><span style="color:#75715e">  --&gt;</span>
+  <span style="color:#75715e">&lt;!-- 本地构件存放目录 --&gt;</span>
+  <span style="color:#f92672">&lt;localRepository&gt;</span>${user.home}/.m2/repository<span style="color:#f92672">&lt;/localRepository&gt;</span>
+
+  <span style="color:#75715e">&lt;!-- interactiveMode
+</span><span style="color:#75715e">   | This will determine whether maven prompts you when it needs input. If set to false,
+</span><span style="color:#75715e">   | maven will use a sensible default value, perhaps based on some other setting, for
+</span><span style="color:#75715e">   | the parameter in question.
+</span><span style="color:#75715e">   |
+</span><span style="color:#75715e">   | Default: true
+</span><span style="color:#75715e">  &lt;interactiveMode&gt;true&lt;/interactiveMode&gt;
+</span><span style="color:#75715e">  --&gt;</span>
+
+  <span style="color:#75715e">&lt;!-- offline
+</span><span style="color:#75715e">   | Determines whether maven should attempt to connect to the network when executing a build.
+</span><span style="color:#75715e">   | This will have an effect on artifact downloads, artifact deployment, and others.
+</span><span style="color:#75715e">   |
+</span><span style="color:#75715e">   | Default: false
+</span><span style="color:#75715e">  &lt;offline&gt;false&lt;/offline&gt;
+</span><span style="color:#75715e">  --&gt;</span>
+
+  <span style="color:#75715e">&lt;!-- pluginGroups
+</span><span style="color:#75715e">   | This is a list of additional group identifiers that will be searched when resolving plugins by their prefix, i.e.
+</span><span style="color:#75715e">   | when invoking a command line like &#34;mvn prefix:goal&#34;. Maven will automatically add the group identifiers
+</span><span style="color:#75715e">   | &#34;org.apache.maven.plugins&#34; and &#34;org.codehaus.mojo&#34; if these are not already contained in the list.
+</span><span style="color:#75715e">   |--&gt;</span>
+  <span style="color:#f92672">&lt;pluginGroups&gt;</span>
+    <span style="color:#75715e">&lt;!-- pluginGroup
+</span><span style="color:#75715e">     | Specifies a further group identifier to use for plugin lookup.
+</span><span style="color:#75715e">    &lt;pluginGroup&gt;com.your.plugins&lt;/pluginGroup&gt;
+</span><span style="color:#75715e">    --&gt;</span>
+  <span style="color:#f92672">&lt;/pluginGroups&gt;</span>
+
+  <span style="color:#75715e">&lt;!-- proxies
+</span><span style="color:#75715e">   | This is a list of proxies which can be used on this machine to connect to the network.
+</span><span style="color:#75715e">   | Unless otherwise specified (by system property or command-line switch), the first proxy
+</span><span style="color:#75715e">   | specification in this list marked as active will be used.
+</span><span style="color:#75715e">   |--&gt;</span>
+  <span style="color:#75715e">&lt;!-- 代理配置（一般用不到） --&gt;</span>
+  <span style="color:#f92672">&lt;proxies&gt;</span>
+    <span style="color:#75715e">&lt;!-- proxy
+</span><span style="color:#75715e">     | Specification for one proxy, to be used in connecting to the network.
+</span><span style="color:#75715e">     |
+</span><span style="color:#75715e">    &lt;proxy&gt;
+</span><span style="color:#75715e">      &lt;id&gt;optional&lt;/id&gt;
+</span><span style="color:#75715e">      &lt;active&gt;true&lt;/active&gt;
+</span><span style="color:#75715e">      &lt;protocol&gt;http&lt;/protocol&gt;
+</span><span style="color:#75715e">      &lt;username&gt;proxyuser&lt;/username&gt;
+</span><span style="color:#75715e">      &lt;password&gt;proxypass&lt;/password&gt;
+</span><span style="color:#75715e">      &lt;host&gt;proxy.host.net&lt;/host&gt;
+</span><span style="color:#75715e">      &lt;port&gt;80&lt;/port&gt;
+</span><span style="color:#75715e">      &lt;nonProxyHosts&gt;local.net|some.host.com&lt;/nonProxyHosts&gt;
+</span><span style="color:#75715e">    &lt;/proxy&gt;
+</span><span style="color:#75715e">    --&gt;</span>
+  <span style="color:#f92672">&lt;/proxies&gt;</span>
+
+  <span style="color:#75715e">&lt;!-- servers
+</span><span style="color:#75715e">   | This is a list of authentication profiles, keyed by the server-id used within the system.
+</span><span style="color:#75715e">   | Authentication profiles can be used whenever maven must make a connection to a remote server.
+</span><span style="color:#75715e">   |--&gt;</span>
+  <span style="color:#75715e">&lt;!-- 服务配置，主要配置认证信息 --&gt;</span>
+  <span style="color:#f92672">&lt;servers&gt;</span>
+    <span style="color:#75715e">&lt;!-- server
+</span><span style="color:#75715e">     | Specifies the authentication information to use when connecting to a particular server, identified by
+</span><span style="color:#75715e">     | a unique name within the system (referred to by the &#39;id&#39; attribute below).
+</span><span style="color:#75715e">     |
+</span><span style="color:#75715e">     | NOTE: You should either specify username/password OR privateKey/passphrase, since these pairings are
+</span><span style="color:#75715e">     |       used together.
+</span><span style="color:#75715e">     |
+</span><span style="color:#75715e">    &lt;server&gt;
+</span><span style="color:#75715e">      &lt;id&gt;deploymentRepo&lt;/id&gt;
+</span><span style="color:#75715e">      &lt;username&gt;repouser&lt;/username&gt;
+</span><span style="color:#75715e">      &lt;password&gt;repopwd&lt;/password&gt;
+</span><span style="color:#75715e">    &lt;/server&gt;
+</span><span style="color:#75715e">    --&gt;</span>
+
+    <span style="color:#f92672">&lt;server&gt;</span>
+      <span style="color:#75715e">&lt;!-- 服务标识 --&gt;</span>
+      <span style="color:#f92672">&lt;id&gt;</span>releases<span style="color:#f92672">&lt;/id&gt;</span>
+      <span style="color:#75715e">&lt;!-- 认证用户名 --&gt;</span>
+      <span style="color:#f92672">&lt;username&gt;</span>deployment<span style="color:#f92672">&lt;/username&gt;</span>
+      <span style="color:#75715e">&lt;!-- 认证密码 --&gt;</span>
+      <span style="color:#f92672">&lt;password&gt;</span>deployment123<span style="color:#f92672">&lt;/password&gt;</span>
+    <span style="color:#f92672">&lt;/server&gt;</span>
+
+    <span style="color:#f92672">&lt;server&gt;</span>
+      <span style="color:#75715e">&lt;!-- 这里分别对 releases 和 snapshots 仓库进行配置 --&gt;</span>
+      <span style="color:#f92672">&lt;id&gt;</span>snapshots<span style="color:#f92672">&lt;/id&gt;</span>
+      <span style="color:#f92672">&lt;username&gt;</span>deployment<span style="color:#f92672">&lt;/username&gt;</span>
+      <span style="color:#f92672">&lt;password&gt;</span>deployment123<span style="color:#f92672">&lt;/password&gt;</span>
+    <span style="color:#f92672">&lt;/server&gt;</span>
+
+    <span style="color:#75715e">&lt;!-- Another sample, using keys to authenticate.
+</span><span style="color:#75715e">    &lt;server&gt;
+</span><span style="color:#75715e">      &lt;id&gt;siteServer&lt;/id&gt;
+</span><span style="color:#75715e">      &lt;privateKey&gt;/path/to/private/key&lt;/privateKey&gt;
+</span><span style="color:#75715e">      &lt;passphrase&gt;optional; leave empty if not used.&lt;/passphrase&gt;
+</span><span style="color:#75715e">    &lt;/server&gt;
+</span><span style="color:#75715e">    --&gt;</span>
+  <span style="color:#f92672">&lt;/servers&gt;</span>
+
+  <span style="color:#75715e">&lt;!-- mirrors
+</span><span style="color:#75715e">   | This is a list of mirrors to be used in downloading artifacts from remote repositories.
+</span><span style="color:#75715e">   |
+</span><span style="color:#75715e">   | It works like this: a POM may declare a repository to use in resolving certain artifacts.
+</span><span style="color:#75715e">   | However, this repository may have problems with heavy traffic at times, so people have mirrored
+</span><span style="color:#75715e">   | it to several places.
+</span><span style="color:#75715e">   |
+</span><span style="color:#75715e">   | That repository definition will have a unique id, so we can create a mirror reference for that
+</span><span style="color:#75715e">   | repository, to be used as an alternate download site. The mirror site will be the preferred
+</span><span style="color:#75715e">   | server for that repository.
+</span><span style="color:#75715e">   |--&gt;</span>
+  <span style="color:#75715e">&lt;!-- 配置仓库镜像 --&gt;</span>
+  <span style="color:#f92672">&lt;mirrors&gt;</span>
+    <span style="color:#75715e">&lt;!-- mirror
+</span><span style="color:#75715e">     | Specifies a repository mirror site to use instead of a given repository. The repository that
+</span><span style="color:#75715e">     | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
+</span><span style="color:#75715e">     | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
+</span><span style="color:#75715e">     |
+</span><span style="color:#75715e">    &lt;mirror&gt;
+</span><span style="color:#75715e">      &lt;id&gt;mirrorId&lt;/id&gt;
+</span><span style="color:#75715e">      &lt;mirrorOf&gt;repositoryId&lt;/mirrorOf&gt;
+</span><span style="color:#75715e">      &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt;
+</span><span style="color:#75715e">      &lt;url&gt;http://my.repository.com/repo/path&lt;/url&gt;
+</span><span style="color:#75715e">    &lt;/mirror&gt;
+</span><span style="color:#75715e">     --&gt;</span>
+
+    <span style="color:#75715e">&lt;!-- 这里用阿里云的Maven仓位来做为中央仓库的镜像，好处是公共构件下载压力转移到公共设施上了，如果局域网内Maven私服性能足够，则没必要这样做 --&gt;</span>
+    <span style="color:#f92672">&lt;mirror&gt;</span>
+      <span style="color:#f92672">&lt;id&gt;</span>aliyun<span style="color:#f92672">&lt;/id&gt;</span>
+      <span style="color:#f92672">&lt;name&gt;</span>aliyun<span style="color:#f92672">&lt;/name&gt;</span>
+      <span style="color:#f92672">&lt;url&gt;</span>https://maven.aliyun.com/repository/public<span style="color:#f92672">&lt;/url&gt;</span>
+      <span style="color:#75715e">&lt;!-- 镜像的目标仓库，central表示中央仓库，*表示所有仓库 --&gt;</span>
+      <span style="color:#f92672">&lt;mirrorOf&gt;</span>central<span style="color:#f92672">&lt;/mirrorOf&gt;</span>
+    <span style="color:#f92672">&lt;/mirror&gt;</span>
+
+  <span style="color:#f92672">&lt;/mirrors&gt;</span>
+
+  <span style="color:#75715e">&lt;!-- profiles
+</span><span style="color:#75715e">   | This is a list of profiles which can be activated in a variety of ways, and which can modify
+</span><span style="color:#75715e">   | the build process. Profiles provided in the settings.xml are intended to provide local machine-
+</span><span style="color:#75715e">   | specific paths and repository locations which allow the build to work in the local environment.
+</span><span style="color:#75715e">   |
+</span><span style="color:#75715e">   | For example, if you have an integration testing plugin - like cactus - that needs to know where
+</span><span style="color:#75715e">   | your Tomcat instance is installed, you can provide a variable here such that the variable is
+</span><span style="color:#75715e">   | dereferenced during the build process to configure the cactus plugin.
+</span><span style="color:#75715e">   |
+</span><span style="color:#75715e">   | As noted above, profiles can be activated in a variety of ways. One way - the activeProfiles
+</span><span style="color:#75715e">   | section of this document (settings.xml) - will be discussed later. Another way essentially
+</span><span style="color:#75715e">   | relies on the detection of a system property, either matching a particular value for the property,
+</span><span style="color:#75715e">   | or merely testing its existence. Profiles can also be activated by JDK version prefix, where a
+</span><span style="color:#75715e">   | value of &#39;1.4&#39; might activate a profile when the build is executed on a JDK version of &#39;1.4.2_07&#39;.
+</span><span style="color:#75715e">   | Finally, the list of active profiles can be specified directly from the command line.
+</span><span style="color:#75715e">   |
+</span><span style="color:#75715e">   | NOTE: For profiles defined in the settings.xml, you are restricted to specifying only artifact
+</span><span style="color:#75715e">   |       repositories, plugin repositories, and free-form properties to be used as configuration
+</span><span style="color:#75715e">   |       variables for plugins in the POM.
+</span><span style="color:#75715e">   |
+</span><span style="color:#75715e">   |--&gt;</span>
+  <span style="color:#75715e">&lt;!-- 配置列表，可以实现动态切换配置 --&gt;</span>
+  <span style="color:#f92672">&lt;profiles&gt;</span>
+
+    <span style="color:#f92672">&lt;profile&gt;</span>
+      <span style="color:#75715e">&lt;!-- 配置标识，切换、激活等都基于该标识来实现 --&gt;</span>
+      <span style="color:#f92672">&lt;id&gt;</span>zlikun<span style="color:#f92672">&lt;/id&gt;</span>
+
+      <span style="color:#75715e">&lt;!-- 配置自激活（启用）条件 --&gt;</span>
+      <span style="color:#f92672">&lt;activation&gt;</span>
+        <span style="color:#75715e">&lt;!-- JDK版本 --&gt;</span>
+        <span style="color:#f92672">&lt;jdk&gt;</span>1.8<span style="color:#f92672">&lt;/jdk&gt;</span>
+        <span style="color:#75715e">&lt;!-- 还可以指定操作系统条件 --&gt;</span>
+        <span style="color:#75715e">&lt;!-- &lt;os&gt;&lt;/os&gt; --&gt;</span>
+        <span style="color:#75715e">&lt;!-- 是否默认启用 --&gt;</span>
+        <span style="color:#f92672">&lt;activeByDefault&gt;</span>true<span style="color:#f92672">&lt;/activeByDefault&gt;</span>
+      <span style="color:#f92672">&lt;/activation&gt;</span>
+
+      <span style="color:#75715e">&lt;!-- 仓库列表配置 --&gt;</span>
+      <span style="color:#f92672">&lt;repositories&gt;</span>
+
+        <span style="color:#75715e">&lt;!-- 配置公共仓库（组），这里是一个私服地址 --&gt;</span>
+        <span style="color:#f92672">&lt;repository&gt;</span>
+          <span style="color:#f92672">&lt;id&gt;</span>public<span style="color:#f92672">&lt;/id&gt;</span>
+          <span style="color:#f92672">&lt;name&gt;</span>public<span style="color:#f92672">&lt;/name&gt;</span>
+          <span style="color:#f92672">&lt;url&gt;</span>http://nexus.i.zlikun.com/content/groups/public/<span style="color:#f92672">&lt;/url&gt;</span>
+          <span style="color:#f92672">&lt;layout&gt;</span>default<span style="color:#f92672">&lt;/layout&gt;</span>
+          <span style="color:#75715e">&lt;!-- snapshot构件策略 --&gt;</span>
+          <span style="color:#f92672">&lt;snapshots&gt;</span>
+            <span style="color:#75715e">&lt;!-- 该仓库是否允此类构件 --&gt;</span>
+            <span style="color:#f92672">&lt;enabled&gt;</span>true<span style="color:#f92672">&lt;/enabled&gt;</span>
+            <span style="color:#75715e">&lt;!-- 指定更新发生的频率，Maven会比较本地POM和远程POM的时间戳 --&gt;</span>
+            <span style="color:#75715e">&lt;!-- always(一直)、daily(每日，默认)、interval：X(时间间隔，单位：分钟)、never(从不) --&gt;</span>
+            <span style="color:#75715e">&lt;!-- 快照版本设置为实时更新，因为修改发布频率比较高，如果不用always，也可以在分行mvn相关命令时加上 -U 参数强制更新 --&gt;</span>
+            <span style="color:#f92672">&lt;updatePolicy&gt;</span>always<span style="color:#f92672">&lt;/updatePolicy&gt;</span>
+            <span style="color:#75715e">&lt;!-- 构件校验失败处理：ignore(忽略)、warn(警告)、fail(失败) --&gt;</span>
+            <span style="color:#f92672">&lt;checksumPolicy&gt;</span>fail<span style="color:#f92672">&lt;/checksumPolicy&gt;</span>
+          <span style="color:#f92672">&lt;/snapshots&gt;</span>
+          <span style="color:#75715e">&lt;!-- release构件策略 --&gt;</span>
+          <span style="color:#f92672">&lt;releases&gt;</span>
+            <span style="color:#75715e">&lt;!-- 该仓库是否允此类构件 --&gt;</span>
+            <span style="color:#f92672">&lt;enabled&gt;</span>true<span style="color:#f92672">&lt;/enabled&gt;</span>
+            <span style="color:#75715e">&lt;!-- 指定更新发生的频率，Maven会比较本地POM和远程POM的时间戳 --&gt;</span>
+            <span style="color:#75715e">&lt;!-- always(一直)、daily(每日，默认)、interval：X(时间间隔，单位：分钟)、never(从不) --&gt;</span>
+            <span style="color:#f92672">&lt;updatePolicy&gt;</span>daily<span style="color:#f92672">&lt;/updatePolicy&gt;</span>
+            <span style="color:#75715e">&lt;!-- 构件校验失败处理：ignore(忽略)、warn(警告)、fail(失败) --&gt;</span>
+            <span style="color:#f92672">&lt;checksumPolicy&gt;</span>warn<span style="color:#f92672">&lt;/checksumPolicy&gt;</span>
+          <span style="color:#f92672">&lt;/releases&gt;</span>
+        <span style="color:#f92672">&lt;/repository&gt;</span>
+
+      <span style="color:#f92672">&lt;/repositories&gt;</span>
+
+      <span style="color:#f92672">&lt;pluginRepositories&gt;</span>
+
+        <span style="color:#f92672">&lt;pluginRepository&gt;</span>
+          <span style="color:#f92672">&lt;id&gt;</span>zlikun<span style="color:#f92672">&lt;/id&gt;</span>
+          <span style="color:#f92672">&lt;name&gt;</span>zlikun<span style="color:#f92672">&lt;/name&gt;</span>
+          <span style="color:#f92672">&lt;url&gt;</span>http://nexus.i.zlikun.com/content/groups/public/<span style="color:#f92672">&lt;/url&gt;</span>
+          <span style="color:#f92672">&lt;layout&gt;</span>default<span style="color:#f92672">&lt;/layout&gt;</span>
+        <span style="color:#f92672">&lt;/pluginRepository&gt;</span>
+
+      <span style="color:#f92672">&lt;/pluginRepositories&gt;</span>
+
+    <span style="color:#f92672">&lt;/profile&gt;</span>
+
+    <span style="color:#f92672">&lt;profile&gt;</span>
+      <span style="color:#f92672">&lt;id&gt;</span>aliyun<span style="color:#f92672">&lt;/id&gt;</span>
+
+      <span style="color:#75715e">&lt;!--
+</span><span style="color:#75715e">      &lt;activation&gt;
+</span><span style="color:#75715e">        &lt;jdk&gt;1.8&lt;/jdk&gt;
+</span><span style="color:#75715e">        &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+</span><span style="color:#75715e">      &lt;/activation&gt;
+</span><span style="color:#75715e">      --&gt;</span>
+
+      <span style="color:#f92672">&lt;repositories&gt;</span>
+        <span style="color:#f92672">&lt;repository&gt;</span>
+          <span style="color:#f92672">&lt;id&gt;</span>aliyun<span style="color:#f92672">&lt;/id&gt;</span>
+          <span style="color:#f92672">&lt;name&gt;</span>aliyun<span style="color:#f92672">&lt;/name&gt;</span>
+          <span style="color:#f92672">&lt;url&gt;</span>https://maven.aliyun.com/repository/public<span style="color:#f92672">&lt;/url&gt;</span>
+          <span style="color:#f92672">&lt;layout&gt;</span>default<span style="color:#f92672">&lt;/layout&gt;</span>
+        <span style="color:#f92672">&lt;/repository&gt;</span>
+
+      <span style="color:#f92672">&lt;/repositories&gt;</span>
+
+      <span style="color:#f92672">&lt;pluginRepositories&gt;</span>
+        <span style="color:#f92672">&lt;pluginRepository&gt;</span>
+          <span style="color:#f92672">&lt;id&gt;</span>aliyun<span style="color:#f92672">&lt;/id&gt;</span>
+          <span style="color:#f92672">&lt;name&gt;</span>aliyun<span style="color:#f92672">&lt;/name&gt;</span>
+          <span style="color:#f92672">&lt;url&gt;</span>https://maven.aliyun.com/repository/public<span style="color:#f92672">&lt;/url&gt;</span>
+          <span style="color:#f92672">&lt;layout&gt;</span>default<span style="color:#f92672">&lt;/layout&gt;</span>
+        <span style="color:#f92672">&lt;/pluginRepository&gt;</span>
+      <span style="color:#f92672">&lt;/pluginRepositories&gt;</span>
+
+    <span style="color:#f92672">&lt;/profile&gt;</span>
+
+  <span style="color:#f92672">&lt;/profiles&gt;</span>
+
+  <span style="color:#75715e">&lt;!-- activeProfiles
+</span><span style="color:#75715e">   | List of profiles that are active for all builds.
+</span><span style="color:#75715e">   |
+</span><span style="color:#75715e">  &lt;activeProfiles&gt;
+</span><span style="color:#75715e">    &lt;activeProfile&gt;alwaysActiveProfile&lt;/activeProfile&gt;
+</span><span style="color:#75715e">    &lt;activeProfile&gt;anotherAlwaysActiveProfile&lt;/activeProfile&gt;
+</span><span style="color:#75715e">  &lt;/activeProfiles&gt;
+</span><span style="color:#75715e">  --&gt;</span>
+
+  <span style="color:#f92672">&lt;activeProfiles&gt;</span>
+    <span style="color:#f92672">&lt;activeProfile&gt;</span>zlikun<span style="color:#f92672">&lt;/activeProfile&gt;</span>
+  <span style="color:#f92672">&lt;/activeProfiles&gt;</span>
+
+<span style="color:#f92672">&lt;/settings&gt;</span>
+
+</code></pre></div><ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/maven" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Maven</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/java" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Java</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/java/maven%E4%B9%8B%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA/">Maven之私服搭建</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zlikun.github.io/" >
+    &copy;  负熵为生 2021 
+  </a>
+    <div>
+
+
+
+
+<a href="https://twitter.com/zlikun" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://github.com/zlikun" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

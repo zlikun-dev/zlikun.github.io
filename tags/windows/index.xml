@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>windows on 负熵为生</title>
+    <link>https://zlikun.github.io/tags/windows/</link>
+    <description>Recent content in windows on 负熵为生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 06 Mar 2021 23:43:15 +0800</lastBuildDate><atom:link href="https://zlikun.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SDKMAN入门</title>
+      <link>https://zlikun.github.io/post/devops/sdkman%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Sat, 06 Mar 2021 23:43:15 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/post/devops/sdkman%E5%85%A5%E9%97%A8/</guid>
+      <description>SDKMAN 是一款软件开发包管理器，常用于管理JDK等二进制SDK包
+安装 Linux系统下安装比较简单，这里请参照官方文档即可
+$ curl -s &amp;#34;https://get.sdkman.io&amp;#34; | bash Windows系统下则会比较麻烦，因为SDKMAN依赖Linux系统下的一些组件（软件），所以在Windows上安装需要先安装这些依赖的组件
+大致有三种方式
+ 安装 Windows Linux System（WLS） 安装 Cygwin 安装 Git Bash for Windows  做为开发人员通常已经安装了 Git Bash ，所以使用该方式最简单。安装 SDKMAN 之前还需要安装其它缺失工具：curl、unzip和sed，其中curl和sed默认已有安装，zip/unzip则需要手动安装（下载地址）。下载后解压，将zip.exe复制到 Git Bash 安装目录下的 mingw64/bin 目录下即可
+在 Windows 系统上安装 SDKMAN 与 Linux 系统一致
+# 下载安装 $ curl -s &amp;quot;https://get.sdkman.io&amp;quot; | bash $ sdk version SDKMAN 5.11.0+644 # 执行初始化（否则 sdk 命令不可用） $ source &amp;quot;~/.sdkman/bin/sdkman-init.sh&amp;quot; 用法 $ sdk help Usage: sdk &amp;lt;command&amp;gt; [candidate] [version] sdk offline &amp;lt;enable|disable&amp;gt; commands: install or i &amp;lt;candidate&amp;gt; [version] [local-path] uninstall or rm &amp;lt;candidate&amp;gt; &amp;lt;version&amp;gt; list or ls [candidate] use or u &amp;lt;candidate&amp;gt; &amp;lt;version&amp;gt; completion &amp;lt;bash|zsh&amp;gt; default or d &amp;lt;candidate&amp;gt; [version] home or h &amp;lt;candidate&amp;gt; &amp;lt;version&amp;gt; env or e [init|install|clear] current or c [candidate] upgrade or ug [candidate] version or v broadcast or b help offline [enable|disable] selfupdate [force] update flush [archives|tmp|broadcast|version] candidate : the SDK to install: groovy, scala, grails, gradle, kotlin, etc.</description>
+    </item>
+    
+  </channel>
+</rss>

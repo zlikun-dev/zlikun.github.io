@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 负熵为生</title>
+    <link>https://zlikun.github.io/tags/</link>
+    <description>Recent content in Tags on 负熵为生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 06 Mar 2021 23:43:15 +0800</lastBuildDate><atom:link href="https://zlikun.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>linux</title>
+      <link>https://zlikun.github.io/tags/linux/</link>
+      <pubDate>Sat, 06 Mar 2021 23:43:15 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sdkman</title>
+      <link>https://zlikun.github.io/tags/sdkman/</link>
+      <pubDate>Sat, 06 Mar 2021 23:43:15 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/sdkman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>windows</title>
+      <link>https://zlikun.github.io/tags/windows/</link>
+      <pubDate>Sat, 06 Mar 2021 23:43:15 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>https://zlikun.github.io/tags/git/</link>
+      <pubDate>Wed, 18 Mar 2020 22:48:27 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gitea</title>
+      <link>https://zlikun.github.io/tags/gitea/</link>
+      <pubDate>Wed, 18 Mar 2020 22:48:27 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/gitea/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>https://zlikun.github.io/tags/java/</link>
+      <pubDate>Wed, 18 Mar 2020 22:10:13 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Maven</title>
+      <link>https://zlikun.github.io/tags/maven/</link>
+      <pubDate>Wed, 18 Mar 2020 22:10:13 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/maven/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DevOps</title>
+      <link>https://zlikun.github.io/tags/devops/</link>
+      <pubDate>Wed, 18 Mar 2020 13:24:12 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gradle</title>
+      <link>https://zlikun.github.io/tags/gradle/</link>
+      <pubDate>Wed, 18 Mar 2020 13:24:12 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/gradle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nexus</title>
+      <link>https://zlikun.github.io/tags/nexus/</link>
+      <pubDate>Wed, 18 Mar 2020 13:24:12 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/nexus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CentOS</title>
+      <link>https://zlikun.github.io/tags/centos/</link>
+      <pubDate>Wed, 18 Mar 2020 01:52:17 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/centos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nginx</title>
+      <link>https://zlikun.github.io/tags/nginx/</link>
+      <pubDate>Sun, 08 Mar 2020 13:22:01 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RTMP</title>
+      <link>https://zlikun.github.io/tags/rtmp/</link>
+      <pubDate>Sun, 08 Mar 2020 13:22:01 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/rtmp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>直播</title>
+      <link>https://zlikun.github.io/tags/%E7%9B%B4%E6%92%AD/</link>
+      <pubDate>Sun, 08 Mar 2020 13:22:01 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/%E7%9B%B4%E6%92%AD/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Github Pages</title>
+      <link>https://zlikun.github.io/tags/github-pages/</link>
+      <pubDate>Sun, 23 Feb 2020 20:06:40 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/github-pages/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://zlikun.github.io/tags/hugo/</link>
+      <pubDate>Sun, 23 Feb 2020 20:06:40 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OpenSSH</title>
+      <link>https://zlikun.github.io/tags/openssh/</link>
+      <pubDate>Sun, 23 Feb 2020 20:04:44 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/openssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SSH</title>
+      <link>https://zlikun.github.io/tags/ssh/</link>
+      <pubDate>Sun, 23 Feb 2020 20:04:44 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ArchLinux</title>
+      <link>https://zlikun.github.io/tags/archlinux/</link>
+      <pubDate>Sun, 23 Feb 2020 19:53:39 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/archlinux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Manjaro</title>
+      <link>https://zlikun.github.io/tags/manjaro/</link>
+      <pubDate>Sun, 23 Feb 2020 19:53:39 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/manjaro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CI/CD</title>
+      <link>https://zlikun.github.io/tags/ci/cd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zlikun.github.io/tags/ci/cd/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on 负熵为生</title>
+    <link>https://zlikun.github.io/tags/linux/</link>
+    <description>Recent content in linux on 负熵为生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 06 Mar 2021 23:43:15 +0800</lastBuildDate><atom:link href="https://zlikun.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SDKMAN入门</title>
+      <link>https://zlikun.github.io/post/devops/sdkman%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Sat, 06 Mar 2021 23:43:15 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/post/devops/sdkman%E5%85%A5%E9%97%A8/</guid>
+      <description>SDKMAN 是一款软件开发包管理器，常用于管理JDK等二进制SDK包
+安装 Linux系统下安装比较简单，这里请参照官方文档即可
+$ curl -s &amp;#34;https://get.sdkman.io&amp;#34; | bash Windows系统下则会比较麻烦，因为SDKMAN依赖Linux系统下的一些组件（软件），所以在Windows上安装需要先安装这些依赖的组件
+大致有三种方式
+ 安装 Windows Linux System（WLS） 安装 Cygwin 安装 Git Bash for Windows  做为开发人员通常已经安装了 Git Bash ，所以使用该方式最简单。安装 SDKMAN 之前还需要安装其它缺失工具：curl、unzip和sed，其中curl和sed默认已有安装，zip/unzip则需要手动安装（下载地址）。下载后解压，将zip.exe复制到 Git Bash 安装目录下的 mingw64/bin 目录下即可
+在 Windows 系统上安装 SDKMAN 与 Linux 系统一致
+# 下载安装 $ curl -s &amp;quot;https://get.sdkman.io&amp;quot; | bash $ sdk version SDKMAN 5.11.0+644 # 执行初始化（否则 sdk 命令不可用） $ source &amp;quot;~/.sdkman/bin/sdkman-init.sh&amp;quot; 用法 $ sdk help Usage: sdk &amp;lt;command&amp;gt; [candidate] [version] sdk offline &amp;lt;enable|disable&amp;gt; commands: install or i &amp;lt;candidate&amp;gt; [version] [local-path] uninstall or rm &amp;lt;candidate&amp;gt; &amp;lt;version&amp;gt; list or ls [candidate] use or u &amp;lt;candidate&amp;gt; &amp;lt;version&amp;gt; completion &amp;lt;bash|zsh&amp;gt; default or d &amp;lt;candidate&amp;gt; [version] home or h &amp;lt;candidate&amp;gt; &amp;lt;version&amp;gt; env or e [init|install|clear] current or c [candidate] upgrade or ug [candidate] version or v broadcast or b help offline [enable|disable] selfupdate [force] update flush [archives|tmp|broadcast|version] candidate : the SDK to install: groovy, scala, grails, gradle, kotlin, etc.</description>
+    </item>
+    
+    <item>
+      <title>CentOS-7安装后需要做的几件事</title>
+      <link>https://zlikun.github.io/post/linux/centos-7%E5%AE%89%E8%A3%85%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E4%BA%8B/</link>
+      <pubDate>Wed, 18 Mar 2020 01:52:17 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/post/linux/centos-7%E5%AE%89%E8%A3%85%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E4%BA%8B/</guid>
+      <description>修改主机名 $ hostnamectl set-hostname template 设置静态IP # 从 CentOS-7 就开始推荐使用 nmcli 来配置网络了（CentOS-8同样适用） # https://andyx.net/configuring_static_ip_address_in_rhel8_centos8_system_with_nmcli_nmtui_ifcfg/ # 配置IP $ nmcli con mod enp0s3 ipv4.addresses 192.168.1.100/24 # 配置网关 $ nmcli con mod enp0s3 ipv4.gateway 192.168.1.1 # 设置手动模式（dhcp = auto, static = manual） $ nmcli con mod enp0s3 ipv4.method manual # 配置DNS $ nmcli con mod enp0s3 ipv4.dns &amp;quot;8.8.8.8&amp;quot; # 配置开机启动 $ nmcli con mod enp0s3 connection.autoconnect yes # 实际上述命令执行结果依然是存储在 /etc/sysconfig/network-scripts/ifcfg-* 文件中，所以直接按原有方式修改该文件也是可以的 SSH公钥认证 # 密码认证常常不安全，所以采用公钥认证 # 修改 /etc/ssh/sshd_config 文件 # 关闭密码认证 PasswordAuthentication no # 启用公钥认证 PubkeyAuthentication yes # 重启sshd服务即生效 $ systemctl restart sshd # 注意要先将客户机的公钥上传至目标服务器上，否则后面可能就没办法ssh连过去了（密码认证被禁） # 客户机上生成公私钥命令 $ ssh-keygen -t rsa -C &amp;quot;zlikun@studio&amp;quot; # 会生成公私钥文件，私钥文件应妥善保存，不要外泄 # ~/.</description>
+    </item>
+    
+    <item>
+      <title>SSH基本用法</title>
+      <link>https://zlikun.github.io/post/linux/ssh%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Sun, 23 Feb 2020 20:04:44 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/post/linux/ssh%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</guid>
+      <description>生成密钥 # 生成RSA密钥对，默认存储于 ~/.ssh/ 目录下，-C 参数指定备注信息 $ ssh-keygen -t rsa [-C &amp;quot;zlikun-dev@hotmail.com&amp;quot;] # ~/.ssh/id_rsa # ~/.ssh/id_rsa.pub # 查看 ssh-keygen 帮助信息 $ man ssh-keygen # 分发密钥，默认发送 ~/.ssh/id_rsa.pub 文件，也可以通过 -i 显示指定 $ ssh-copy-id [-i id_rsa.pub] &amp;lt;username&amp;gt;@&amp;lt;host&amp;gt;[:&amp;lt;port&amp;gt;] # 实际上是把密钥追加到目标服务器的 ~/.ssh/authorized_keys 文件中，所以使用其它方式追加都是可以的 # 如果是第一次手工创建文件，务必注意文件权限问题，设置为只有当前用户有读写权限（600或644）即可 $ ls -al ~/.ssh/authorized_keys -rw------- 1 root root 808 Jan 31 18:52 /root/.ssh/authorized_keys # chmod 600 /root/.ssh/authorized_keys 密钥登录 # 参考上面的步骤将公钥添加到目标服务器上 # 修改目标服务器的SSH配置 $ vim /etc/ssh/sshd_config # 允许密钥认证 PubkeyAuthentication yes # 指定密钥路径（默认值） AuthorizedKeysFile .</description>
+    </item>
+    
+    <item>
+      <title>Manjaro基本配置</title>
+      <link>https://zlikun.github.io/post/linux/manjaro%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Sun, 23 Feb 2020 19:53:39 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/post/linux/manjaro%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
+      <description>更换源 # 排列选择一个国内源，然后执行更新同步 sudo pacman-mirrors -i -c China -m rank sudo pacman -Syy # 添加Arch源 sudo vim /etc/pacman.conf [archlinuxcn] SigLevel = Optional TrustedOnly Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux-cn/$arch # 更新数据库并安装密钥 sudo pacman -Syy &amp;amp;&amp;amp; sudo pacman -S archlinuxcn-keyring # 升级系统 sudo pacman -Su pacman  pacman 是 Arch 系Linux自带的包管理器，下面是一些常用命令
+ pacman -S package_name # 安装软件 pacman -S extra/package_name # 安装不同仓库中的版本 pacman -Syu # 升级整个系统，y是更新数据库，yy是强制更新，u是升级软件 pacman -Ss string # 在包数据库中查询软件 pacman -Si package_name # 显示软件的详细信息 pacman -Sc # 清除软件缓存，即/var/cache/pacman/pkg目录下的文件 pacman -R package_name # 删除单个软件 pacman -Rs package_name # 删除指定软件及其没有被其他已安装软件使用的依赖关系 pacman -Qs string # 查询已安装的软件包 pacman -Qi package_name # 查询本地安装包的详细信息 pacman -Ql package_name # 获取已安装软件所包含的文件的列表 pacman -U package.</description>
+    </item>
+    
+  </channel>
+</rss>

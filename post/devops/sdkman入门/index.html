@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>负熵为生  | SDKMAN入门</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.81.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.1cb140d8ba31d5b2f1114537dd04802a.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+    
+
+    
+    
+    <meta property="og:title" content="SDKMAN入门" />
+<meta property="og:description" content="SDKMAN 是一款软件开发包管理器，常用于管理JDK等二进制SDK包
+安装 Linux系统下安装比较简单，这里请参照官方文档即可
+$ curl -s &#34;https://get.sdkman.io&#34; | bash Windows系统下则会比较麻烦，因为SDKMAN依赖Linux系统下的一些组件（软件），所以在Windows上安装需要先安装这些依赖的组件
+大致有三种方式
+ 安装 Windows Linux System（WLS） 安装 Cygwin 安装 Git Bash for Windows  做为开发人员通常已经安装了 Git Bash ，所以使用该方式最简单。安装 SDKMAN 之前还需要安装其它缺失工具：curl、unzip和sed，其中curl和sed默认已有安装，zip/unzip则需要手动安装（下载地址）。下载后解压，将zip.exe复制到 Git Bash 安装目录下的 mingw64/bin 目录下即可
+在 Windows 系统上安装 SDKMAN 与 Linux 系统一致
+# 下载安装 $ curl -s &quot;https://get.sdkman.io&quot; | bash $ sdk version SDKMAN 5.11.0&#43;644 # 执行初始化（否则 sdk 命令不可用） $ source &quot;~/.sdkman/bin/sdkman-init.sh&quot; 用法 $ sdk help Usage: sdk &lt;command&gt; [candidate] [version] sdk offline &lt;enable|disable&gt; commands: install or i &lt;candidate&gt; [version] [local-path] uninstall or rm &lt;candidate&gt; &lt;version&gt; list or ls [candidate] use or u &lt;candidate&gt; &lt;version&gt; completion &lt;bash|zsh&gt; default or d &lt;candidate&gt; [version] home or h &lt;candidate&gt; &lt;version&gt; env or e [init|install|clear] current or c [candidate] upgrade or ug [candidate] version or v broadcast or b help offline [enable|disable] selfupdate [force] update flush [archives|tmp|broadcast|version] candidate : the SDK to install: groovy, scala, grails, gradle, kotlin, etc." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zlikun.github.io/post/devops/sdkman%E5%85%A5%E9%97%A8/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-03-06T23:43:15&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-06T23:43:15&#43;08:00" />
+
+<meta itemprop="name" content="SDKMAN入门">
+<meta itemprop="description" content="SDKMAN 是一款软件开发包管理器，常用于管理JDK等二进制SDK包
+安装 Linux系统下安装比较简单，这里请参照官方文档即可
+$ curl -s &#34;https://get.sdkman.io&#34; | bash Windows系统下则会比较麻烦，因为SDKMAN依赖Linux系统下的一些组件（软件），所以在Windows上安装需要先安装这些依赖的组件
+大致有三种方式
+ 安装 Windows Linux System（WLS） 安装 Cygwin 安装 Git Bash for Windows  做为开发人员通常已经安装了 Git Bash ，所以使用该方式最简单。安装 SDKMAN 之前还需要安装其它缺失工具：curl、unzip和sed，其中curl和sed默认已有安装，zip/unzip则需要手动安装（下载地址）。下载后解压，将zip.exe复制到 Git Bash 安装目录下的 mingw64/bin 目录下即可
+在 Windows 系统上安装 SDKMAN 与 Linux 系统一致
+# 下载安装 $ curl -s &quot;https://get.sdkman.io&quot; | bash $ sdk version SDKMAN 5.11.0&#43;644 # 执行初始化（否则 sdk 命令不可用） $ source &quot;~/.sdkman/bin/sdkman-init.sh&quot; 用法 $ sdk help Usage: sdk &lt;command&gt; [candidate] [version] sdk offline &lt;enable|disable&gt; commands: install or i &lt;candidate&gt; [version] [local-path] uninstall or rm &lt;candidate&gt; &lt;version&gt; list or ls [candidate] use or u &lt;candidate&gt; &lt;version&gt; completion &lt;bash|zsh&gt; default or d &lt;candidate&gt; [version] home or h &lt;candidate&gt; &lt;version&gt; env or e [init|install|clear] current or c [candidate] upgrade or ug [candidate] version or v broadcast or b help offline [enable|disable] selfupdate [force] update flush [archives|tmp|broadcast|version] candidate : the SDK to install: groovy, scala, grails, gradle, kotlin, etc."><meta itemprop="datePublished" content="2021-03-06T23:43:15&#43;08:00" />
+<meta itemprop="dateModified" content="2021-03-06T23:43:15&#43;08:00" />
+<meta itemprop="wordCount" content="655">
+<meta itemprop="keywords" content="sdkman,linux,windows," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SDKMAN入门"/>
+<meta name="twitter:description" content="SDKMAN 是一款软件开发包管理器，常用于管理JDK等二进制SDK包
+安装 Linux系统下安装比较简单，这里请参照官方文档即可
+$ curl -s &#34;https://get.sdkman.io&#34; | bash Windows系统下则会比较麻烦，因为SDKMAN依赖Linux系统下的一些组件（软件），所以在Windows上安装需要先安装这些依赖的组件
+大致有三种方式
+ 安装 Windows Linux System（WLS） 安装 Cygwin 安装 Git Bash for Windows  做为开发人员通常已经安装了 Git Bash ，所以使用该方式最简单。安装 SDKMAN 之前还需要安装其它缺失工具：curl、unzip和sed，其中curl和sed默认已有安装，zip/unzip则需要手动安装（下载地址）。下载后解压，将zip.exe复制到 Git Bash 安装目录下的 mingw64/bin 目录下即可
+在 Windows 系统上安装 SDKMAN 与 Linux 系统一致
+# 下载安装 $ curl -s &quot;https://get.sdkman.io&quot; | bash $ sdk version SDKMAN 5.11.0&#43;644 # 执行初始化（否则 sdk 命令不可用） $ source &quot;~/.sdkman/bin/sdkman-init.sh&quot; 用法 $ sdk help Usage: sdk &lt;command&gt; [candidate] [version] sdk offline &lt;enable|disable&gt; commands: install or i &lt;candidate&gt; [version] [local-path] uninstall or rm &lt;candidate&gt; &lt;version&gt; list or ls [candidate] use or u &lt;candidate&gt; &lt;version&gt; completion &lt;bash|zsh&gt; default or d &lt;candidate&gt; [version] home or h &lt;candidate&gt; &lt;version&gt; env or e [init|install|clear] current or c [candidate] upgrade or ug [candidate] version or v broadcast or b help offline [enable|disable] selfupdate [force] update flush [archives|tmp|broadcast|version] candidate : the SDK to install: groovy, scala, grails, gradle, kotlin, etc."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://zlikun.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      负熵为生
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+<a href="https://twitter.com/zlikun" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://github.com/zlikun" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://zlikun.github.io/post/devops/sdkman%E5%85%A5%E9%97%A8/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://zlikun.github.io/post/devops/sdkman%E5%85%A5%E9%97%A8/&amp;text=SDKMAN%e5%85%a5%e9%97%a8" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://zlikun.github.io/post/devops/sdkman%E5%85%A5%E9%97%A8/&amp;title=SDKMAN%e5%85%a5%e9%97%a8" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+      <h1 class="f1 athelas mt3 mb1">SDKMAN入门</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-03-06T23:43:15&#43;08:00">March 6, 2021</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p><a href="https://sdkman.io/">SDKMAN</a> 是一款软件开发包管理器，常用于管理JDK等二进制SDK包</p>
+<h3 id="安装">安装</h3>
+<p>Linux系统下安装比较简单，这里请参照官方文档即可</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ curl -s <span style="color:#e6db74">&#34;https://get.sdkman.io&#34;</span> | bash
+</code></pre></div><p>Windows系统下则会比较麻烦，因为SDKMAN依赖Linux系统下的一些组件（软件），所以在Windows上安装需要先安装这些依赖的组件</p>
+<p>大致有三种方式</p>
+<ul>
+<li>安装 <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Linux System</a>（WLS）</li>
+<li>安装 <a href="https://www.cygwin.com/install.html">Cygwin</a></li>
+<li>安装 <a href="https://git-scm.com/download/win">Git Bash for Windows</a></li>
+</ul>
+<p>做为开发人员通常已经安装了 <code>Git Bash</code> ，所以使用该方式最简单。安装 <code>SDKMAN</code> 之前还需要安装其它缺失工具：<code>curl</code>、<code>unzip</code>和<code>sed</code>，其中<code>curl</code>和<code>sed</code>默认已有安装，<code>zip</code>/<code>unzip</code>则需要手动安装（<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fgnuwin32%2Ffiles%2Fzip%2F3.0%2Fzip-3.0-bin.zip%2Fdownload">下载地址</a>）。下载后解压，将<code>zip.exe</code>复制到 <code>Git Bash</code> 安装目录下的 <code>mingw64/bin</code> 目录下即可</p>
+<p>在 Windows 系统上安装 <code>SDKMAN</code> 与 Linux 系统一致</p>
+<pre><code># 下载安装
+$ curl -s &quot;https://get.sdkman.io&quot; | bash
+$ sdk version
+SDKMAN 5.11.0+644
+
+# 执行初始化（否则 sdk 命令不可用）
+$ source &quot;~/.sdkman/bin/sdkman-init.sh&quot;
+</code></pre><h3 id="用法">用法</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sdk help
+
+Usage: sdk &lt;command&gt; <span style="color:#f92672">[</span>candidate<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>version<span style="color:#f92672">]</span>
+       sdk offline &lt;enable|disable&gt;
+
+   commands:
+       install   or i    &lt;candidate&gt; <span style="color:#f92672">[</span>version<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>local-path<span style="color:#f92672">]</span>
+       uninstall or rm   &lt;candidate&gt; &lt;version&gt;
+       list      or ls   <span style="color:#f92672">[</span>candidate<span style="color:#f92672">]</span>
+       use       or u    &lt;candidate&gt; &lt;version&gt;
+       completion        &lt;bash|zsh&gt;
+       default   or d    &lt;candidate&gt; <span style="color:#f92672">[</span>version<span style="color:#f92672">]</span>
+       home      or h    &lt;candidate&gt; &lt;version&gt;
+       env       or e    <span style="color:#f92672">[</span>init|install|clear<span style="color:#f92672">]</span>
+       current   or c    <span style="color:#f92672">[</span>candidate<span style="color:#f92672">]</span>
+       upgrade   or ug   <span style="color:#f92672">[</span>candidate<span style="color:#f92672">]</span>
+       version   or v
+       broadcast or b
+       help
+       offline           <span style="color:#f92672">[</span>enable|disable<span style="color:#f92672">]</span>
+       selfupdate        <span style="color:#f92672">[</span>force<span style="color:#f92672">]</span>
+       update
+       flush             <span style="color:#f92672">[</span>archives|tmp|broadcast|version<span style="color:#f92672">]</span>
+
+   candidate  :  the SDK to install: groovy, scala, grails, gradle, kotlin, etc.
+                 use list command <span style="color:#66d9ef">for</span> comprehensive list of candidates
+                 eg: $ sdk list
+   version    :  where optional, defaults to latest stable <span style="color:#66d9ef">if</span> not provided
+                 eg: $ sdk install groovy
+   local-path :  optional path to an existing local installation
+                 eg: $ sdk install groovy 2.4.13-local /opt/groovy-2.4.13
+</code></pre></div><p>应用示例：安装JDK</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sdk ls java
+<span style="color:#f92672">================================================================================</span>
+Available Java Versions
+<span style="color:#f92672">================================================================================</span>
+ Vendor        | Use | Version      | Dist    | Status     | Identifier
+--------------------------------------------------------------------------------
+ AdoptOpenJDK  |     | 15.0.2.j9    | adpt    |            | 15.0.2.j9-adpt
+               |     | 15.0.2.hs    | adpt    |            | 15.0.2.hs-adpt
+               |     | 11.0.10.j9   | adpt    |            | 11.0.10.j9-adpt
+               |     | 11.0.10.hs   | adpt    |            | 11.0.10.hs-adpt     
+               |     | 11.0.9.open  | adpt    |            | 11.0.9.open-adpt
+               |     | 8.0.282.j9   | adpt    |            | 8.0.282.j9-adpt
+               |     | 8.0.282.hs   | adpt    |            | 8.0.282.hs-adpt
+               |     | 8.0.275.open | adpt    |            | 8.0.275.open-adpt
+ Alibaba       |     | 11.0.9.4     | albba   |            | 11.0.9.4-albba
+ Amazon        |     | 15.0.2.7.1   | amzn    |            | 15.0.2.7.1-amzn
+               |     | 11.0.10.9.1  | amzn    |            | 11.0.10.9.1-amzn
+               |     | 8.282.08.1   | amzn    |            | 8.282.08.1-amzn
+ Azul Zulu     |     | 15.0.2       | zulu    |            | 15.0.2-zulu
+               |     | 15.0.2.fx    | zulu    |            | 15.0.2.fx-zulu
+               |     | 11.0.10      | zulu    |            | 11.0.10-zulu
+               |     | 11.0.10.fx   | zulu    |            | 11.0.10.fx-zulu
+               |     | 8.0.282      | zulu    |            | 8.0.282-zulu
+               |     | 8.0.282.fx   | zulu    |            | 8.0.282.fx-zulu
+               |     | 6.0.119      | zulu    |            | 6.0.119-zulu
+ BellSoft      |     | 15.0.2.fx    | librca  |            | 15.0.2.fx-librca
+               |     | 15.0.2       | librca  |            | 15.0.2-librca
+               |     | 11.0.10.fx   | librca  |            | 11.0.10.fx-librca
+               |     | 11.0.10      | librca  |            | 11.0.10-librca
+               |     | 8.0.282.fx   | librca  |            | 8.0.282.fx-librca
+               |     | 8.0.282      | librca  |            | 8.0.282-librca
+ GraalVM       |     | 21.0.0.2.r11 | grl     |            | 21.0.0.2.r11-grl
+               |     | 21.0.0.2.r8  | grl     |            | 21.0.0.2.r8-grl
+               |     | 20.3.1.2.r11 | grl     |            | 20.3.1.2.r11-grl
+               |     | 20.3.1.2.r8  | grl     |            | 20.3.1.2.r8-grl
+               |     | 19.3.5.r11   | grl     |            | 19.3.5.r11-grl
+               |     | 19.3.5.r8    | grl     |            | 19.3.5.r8-grl
+               |     | 19.1.0       | grl     |            | 19.1.0-grl
+ Java.net      |     | 17.ea.12     | open    |            | 17.ea.12-open
+               |     | 17.ea.11     | open    |            | 17.ea.11-open
+               |     | 17.ea.10     | open    |            | 17.ea.10-open
+               |     | 17.ea.9      | open    |            | 17.ea.9-open        
+               |     | 17.ea.2.pma  | open    |            | 17.ea.2.pma-open
+               |     | 17.ea.2.lm   | open    |            | 17.ea.2.lm-open
+               |     | 16.ea.36     | open    |            | 16.ea.36-open
+               |     | 15.0.2       | open    |            | 15.0.2-open
+               |     | 11.0.10      | open    |            | 11.0.10-open
+               |     | 11.0.2       | open    |            | 11.0.2-open
+               |     | 8.0.282      | open    |            | 8.0.282-open
+               |     | 8.0.265      | open    |            | 8.0.265-open
+ Mandrel       |     | 21.0.0.0     | mandrel |            | 21.0.0.0-mandrel
+               |     | 20.3.1.2     | mandrel |            | 20.3.1.2-mandrel
+ SAP           |     | 15.0.2       | sapmchn |            | 15.0.2-sapmchn
+               |     | 11.0.10      | sapmchn |            | 11.0.10-sapmchn
+ TravaOpenJDK  |     | 11.0.9       | trava   |            | 11.0.9-trava
+<span style="color:#f92672">================================================================================</span>
+Use the Identifier <span style="color:#66d9ef">for</span> installation:
+
+    $ sdk install java 11.0.10.hs-adpt
+<span style="color:#f92672">================================================================================</span>
+
+$ sdk install java 11.0.10.hs-adpt
+
+$ java -version
+java version <span style="color:#e6db74">&#34;11.0.10&#34;</span> 2020-10-20 LTS
+Java<span style="color:#f92672">(</span>TM<span style="color:#f92672">)</span> SE Runtime Environment 18.9 <span style="color:#f92672">(</span>build 11.0.10+7-LTS<span style="color:#f92672">)</span>
+Java HotSpot<span style="color:#f92672">(</span>TM<span style="color:#f92672">)</span> 64-Bit Server VM 18.9 <span style="color:#f92672">(</span>build 11.0.10+7-LTS, mixed mode<span style="color:#f92672">)</span>
+</code></pre></div><ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/sdkman" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">sdkman</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/linux" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">linux</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/windows" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">windows</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zlikun.github.io/" >
+    &copy;  负熵为生 2021 
+  </a>
+    <div>
+
+
+
+
+<a href="https://twitter.com/zlikun" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://github.com/zlikun" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

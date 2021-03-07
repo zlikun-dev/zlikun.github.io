@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>负熵为生 </title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.81.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.1cb140d8ba31d5b2f1114537dd04802a.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+    
+
+    
+    
+      <link href="/tags/index.xml" rel="alternate" type="application/rss+xml" title="负熵为生" />
+      <link href="/tags/index.xml" rel="feed" type="application/rss+xml" title="负熵为生" />
+      
+    
+    
+    <meta property="og:title" content="Tags" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zlikun.github.io/tags/" />
+
+<meta itemprop="name" content="Tags">
+<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Tags"/>
+<meta name="twitter:description" content=""/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://zlikun.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      负熵为生
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+<a href="https://twitter.com/zlikun" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://github.com/zlikun" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Tags
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+    
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links nested-img mid-gray">
+      
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="ph4">
+      
+        <h2 class="f1">
+          <a href="/tags/archlinux" class="link blue hover-black">
+            Tag: archlinux
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/linux/manjaro%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" class="link black dim">
+        Manjaro基本配置
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      更换源 # 排列选择一个国内源，然后执行更新同步 sudo pacman-mirrors -i -c China -m rank sudo pacman -Syy # 添加Arch源 sudo vim /etc/pacman.conf [archlinuxcn] SigLevel = Optional TrustedOnly Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux-cn/$arch # 更新数据库并安装密钥 sudo pacman -Syy &amp;&amp; sudo pacman -S archlinuxcn-keyring # 升级系统 sudo pacman -Su pacman  pacman 是 Arch 系Linux自带的包管理器，下面是一些常用命令
+ pacman -S package_name # 安装软件 pacman -S extra/package_name # 安装不同仓库中的版本 pacman -Syu # 升级整个系统，y是更新数据库，yy是强制更新，u是升级软件 pacman -Ss string # 在包数据库中查询软件 pacman -Si package_name # 显示软件的详细信息 pacman -Sc # 清除软件缓存，即/var/cache/pacman/pkg目录下的文件 pacman -R package_name # 删除单个软件 pacman -Rs package_name # 删除指定软件及其没有被其他已安装软件使用的依赖关系 pacman -Qs string # 查询已安装的软件包 pacman -Qi package_name # 查询本地安装包的详细信息 pacman -Ql package_name # 获取已安装软件所包含的文件的列表 pacman -U package.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/centos" class="link blue hover-black">
+            Tag: centos
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/linux/centos-7%E5%AE%89%E8%A3%85%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E4%BA%8B/" class="link black dim">
+        CentOS-7安装后需要做的几件事
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      修改主机名 $ hostnamectl set-hostname template 设置静态IP # 从 CentOS-7 就开始推荐使用 nmcli 来配置网络了（CentOS-8同样适用） # https://andyx.net/configuring_static_ip_address_in_rhel8_centos8_system_with_nmcli_nmtui_ifcfg/ # 配置IP $ nmcli con mod enp0s3 ipv4.addresses 192.168.1.100/24 # 配置网关 $ nmcli con mod enp0s3 ipv4.gateway 192.168.1.1 # 设置手动模式（dhcp = auto, static = manual） $ nmcli con mod enp0s3 ipv4.method manual # 配置DNS $ nmcli con mod enp0s3 ipv4.dns &quot;8.8.8.8&quot; # 配置开机启动 $ nmcli con mod enp0s3 connection.autoconnect yes # 实际上述命令执行结果依然是存储在 /etc/sysconfig/network-scripts/ifcfg-* 文件中，所以直接按原有方式修改该文件也是可以的 SSH公钥认证 # 密码认证常常不安全，所以采用公钥认证 # 修改 /etc/ssh/sshd_config 文件 # 关闭密码认证 PasswordAuthentication no # 启用公钥认证 PubkeyAuthentication yes # 重启sshd服务即生效 $ systemctl restart sshd # 注意要先将客户机的公钥上传至目标服务器上，否则后面可能就没办法ssh连过去了（密码认证被禁） # 客户机上生成公私钥命令 $ ssh-keygen -t rsa -C &quot;zlikun@studio&quot; # 会生成公私钥文件，私钥文件应妥善保存，不要外泄 # ~/.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/ci/cd" class="link blue hover-black">
+            Tag: ci/cd
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/devops/gitea%E5%AE%89%E8%A3%85/" class="link black dim">
+        Gitea安装
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      资料  https://docs.gitea.io/zh-cn/  准备 # 数据库（MySQL） # https://docs.gitea.io/zh-cn/database-prep/ # 创建数据库 &gt; CREATE DATABASE DB_GITEA CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci'; # 创建用户 &gt; CREATE USER 'gitea'@'%' IDENTIFIED WITH mysql_native_password BY 'Gitea!2020'; # 用户授权 &gt; GRANT ALL PRIVILEGES ON DB_GITEA.* TO 'gitea'@'%'; # 刷新权限，立即生效 &gt; FLUSH PRIVILEGES; # 用户 $ useradd gitea 安装 # 安装 # https://docs.gitea.io/zh-cn/install-from-binary/ # https://docs.gitea.io/zh-cn/install-from-package/ # https://docs.gitea.io/zh-cn/install-from-source/ $ curl -L https://dl.gitea.io/gitea/1.11.2/gitea-1.11.2-linux-amd64 -o /usr/local/bin/gitea $ chmod +x /usr/local/bin/gitea # 测试 $ gitea -v Gitea version 1.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/devops" class="link blue hover-black">
+            Tag: devops
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/java/maven%E4%B9%8B%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA/" class="link black dim">
+        Maven之私服搭建
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      安装 前置
+# Linux CentOS 7 $ cat /etc/redhat-release CentOS Linux release 7.7.1908 (Core) # Java OpenJDK 8 $ yum install java-1.8.0-openjdk-devel $ java -version openjdk version &quot;1.8.0_242&quot; OpenJDK Runtime Environment (build 1.8.0_242-b08) OpenJDK 64-Bit Server VM (build 25.242-b08, mixed mode) 安装
+# https://help.sonatype.com/repomanager2/download # 注意：国内网络可能无法下载，考虑科学上网，或者从其它网站下载 $ curl -OL https://download.sonatype.com/nexus/oss/nexus-latest-bundle.tar.gz # https://help.sonatype.com/repomanager2/installing-and-running $ tar zxvf nexus-2.14.16-01-bundle.tar.gz -C /opt # /opt/nexus-2.14.16-01 Nexus服务程序目录 # /opt/sonatype-work 数据（构件）存放目录 # 创建 nexus 用户，因为 Nexus 不推荐使用 root 用户运行服务 # 注：不能是禁止登录无home目录的虚用户（程序使用 su 切换用户） $ useradd nexus # 修改目录拥有者属性，因为后面将使用 nexus 用户来运行服务 $ chown nexus:nexus -R /opt/nexus-2.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/git" class="link blue hover-black">
+            Tag: git
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/devops/gitea%E5%AE%89%E8%A3%85/" class="link black dim">
+        Gitea安装
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      资料  https://docs.gitea.io/zh-cn/  准备 # 数据库（MySQL） # https://docs.gitea.io/zh-cn/database-prep/ # 创建数据库 &gt; CREATE DATABASE DB_GITEA CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci'; # 创建用户 &gt; CREATE USER 'gitea'@'%' IDENTIFIED WITH mysql_native_password BY 'Gitea!2020'; # 用户授权 &gt; GRANT ALL PRIVILEGES ON DB_GITEA.* TO 'gitea'@'%'; # 刷新权限，立即生效 &gt; FLUSH PRIVILEGES; # 用户 $ useradd gitea 安装 # 安装 # https://docs.gitea.io/zh-cn/install-from-binary/ # https://docs.gitea.io/zh-cn/install-from-package/ # https://docs.gitea.io/zh-cn/install-from-source/ $ curl -L https://dl.gitea.io/gitea/1.11.2/gitea-1.11.2-linux-amd64 -o /usr/local/bin/gitea $ chmod +x /usr/local/bin/gitea # 测试 $ gitea -v Gitea version 1.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/gitea" class="link blue hover-black">
+            Tag: gitea
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/devops/gitea%E5%AE%89%E8%A3%85/" class="link black dim">
+        Gitea安装
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      资料  https://docs.gitea.io/zh-cn/  准备 # 数据库（MySQL） # https://docs.gitea.io/zh-cn/database-prep/ # 创建数据库 &gt; CREATE DATABASE DB_GITEA CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci'; # 创建用户 &gt; CREATE USER 'gitea'@'%' IDENTIFIED WITH mysql_native_password BY 'Gitea!2020'; # 用户授权 &gt; GRANT ALL PRIVILEGES ON DB_GITEA.* TO 'gitea'@'%'; # 刷新权限，立即生效 &gt; FLUSH PRIVILEGES; # 用户 $ useradd gitea 安装 # 安装 # https://docs.gitea.io/zh-cn/install-from-binary/ # https://docs.gitea.io/zh-cn/install-from-package/ # https://docs.gitea.io/zh-cn/install-from-source/ $ curl -L https://dl.gitea.io/gitea/1.11.2/gitea-1.11.2-linux-amd64 -o /usr/local/bin/gitea $ chmod +x /usr/local/bin/gitea # 测试 $ gitea -v Gitea version 1.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/github-pages" class="link blue hover-black">
+            Tag: github-pages
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/hugo/01-hugo%E5%85%A5%E9%97%A8/" class="link black dim">
+        Hugo入门
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      官方网站
+ Hugo 是一个静态网页生成程序，基于Golang实现，但其打包后的程序不依赖外部环境，这点要比Hexo和Jekyll要好一些，另外因为是Golang实现的，其运行速度非常快，笔者选择Hugo做为静博客的生成程序
+ 安装 https://gohugo.io/getting-started/installing/
+# 笔者使用Manjaro系统（Linux）做为开发桌面系统， # 可以直接通pacman命令来安装，其它系统的安装方法参考官方文档 $ sudo pacman -S hugo # 查看版本以确认是否成功安装 $ hugo version Hugo Static Site Generator v0.64.0/extended linux/amd64 ... 示例 https://gohugo.io/getting-started/quick-start/
+https://gohugo.io/getting-started/usage/
+# 通过 help 子命令可以查看 hugo 的所有命令和子命令用法， # 当然你也可以通过 man 来查看 # 创建站点，需要指定一个目录，需要注意这个目录可以不存在， # 但如果存在，则必须是一个空目录 $ hugo new site hugo.zlikun.com # 目录结构 $ tree hugo.zlikun.com/ hugo.zlikun.com/ ├── archetypes │ └── default.md ├── config.toml ├── content ├── data ├── layouts ├── static └── themes 6 directories, 2 files # 最主要的几个目录/文件分别是： # config.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/gradle" class="link blue hover-black">
+            Tag: gradle
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/java/maven%E4%B9%8B%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA/" class="link black dim">
+        Maven之私服搭建
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      安装 前置
+# Linux CentOS 7 $ cat /etc/redhat-release CentOS Linux release 7.7.1908 (Core) # Java OpenJDK 8 $ yum install java-1.8.0-openjdk-devel $ java -version openjdk version &quot;1.8.0_242&quot; OpenJDK Runtime Environment (build 1.8.0_242-b08) OpenJDK 64-Bit Server VM (build 25.242-b08, mixed mode) 安装
+# https://help.sonatype.com/repomanager2/download # 注意：国内网络可能无法下载，考虑科学上网，或者从其它网站下载 $ curl -OL https://download.sonatype.com/nexus/oss/nexus-latest-bundle.tar.gz # https://help.sonatype.com/repomanager2/installing-and-running $ tar zxvf nexus-2.14.16-01-bundle.tar.gz -C /opt # /opt/nexus-2.14.16-01 Nexus服务程序目录 # /opt/sonatype-work 数据（构件）存放目录 # 创建 nexus 用户，因为 Nexus 不推荐使用 root 用户运行服务 # 注：不能是禁止登录无home目录的虚用户（程序使用 su 切换用户） $ useradd nexus # 修改目录拥有者属性，因为后面将使用 nexus 用户来运行服务 $ chown nexus:nexus -R /opt/nexus-2.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/hugo" class="link blue hover-black">
+            Tag: hugo
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/hugo/01-hugo%E5%85%A5%E9%97%A8/" class="link black dim">
+        Hugo入门
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      官方网站
+ Hugo 是一个静态网页生成程序，基于Golang实现，但其打包后的程序不依赖外部环境，这点要比Hexo和Jekyll要好一些，另外因为是Golang实现的，其运行速度非常快，笔者选择Hugo做为静博客的生成程序
+ 安装 https://gohugo.io/getting-started/installing/
+# 笔者使用Manjaro系统（Linux）做为开发桌面系统， # 可以直接通pacman命令来安装，其它系统的安装方法参考官方文档 $ sudo pacman -S hugo # 查看版本以确认是否成功安装 $ hugo version Hugo Static Site Generator v0.64.0/extended linux/amd64 ... 示例 https://gohugo.io/getting-started/quick-start/
+https://gohugo.io/getting-started/usage/
+# 通过 help 子命令可以查看 hugo 的所有命令和子命令用法， # 当然你也可以通过 man 来查看 # 创建站点，需要指定一个目录，需要注意这个目录可以不存在， # 但如果存在，则必须是一个空目录 $ hugo new site hugo.zlikun.com # 目录结构 $ tree hugo.zlikun.com/ hugo.zlikun.com/ ├── archetypes │ └── default.md ├── config.toml ├── content ├── data ├── layouts ├── static └── themes 6 directories, 2 files # 最主要的几个目录/文件分别是： # config.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/java" class="link blue hover-black">
+            Tag: java
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/java/maven%E4%B9%8Bsettings.xml%E9%85%8D%E7%BD%AE/" class="link black dim">
+        Maven之settings.xml配置
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the &#34;License&#34;); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &#34;AS IS&#34; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/linux" class="link blue hover-black">
+            Tag: linux
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/devops/sdkman%E5%85%A5%E9%97%A8/" class="link black dim">
+        SDKMAN入门
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      SDKMAN 是一款软件开发包管理器，常用于管理JDK等二进制SDK包
+安装 Linux系统下安装比较简单，这里请参照官方文档即可
+$ curl -s &#34;https://get.sdkman.io&#34; | bash Windows系统下则会比较麻烦，因为SDKMAN依赖Linux系统下的一些组件（软件），所以在Windows上安装需要先安装这些依赖的组件
+大致有三种方式
+ 安装 Windows Linux System（WLS） 安装 Cygwin 安装 Git Bash for Windows  做为开发人员通常已经安装了 Git Bash ，所以使用该方式最简单。安装 SDKMAN 之前还需要安装其它缺失工具：curl、unzip和sed，其中curl和sed默认已有安装，zip/unzip则需要手动安装（下载地址）。下载后解压，将zip.exe复制到 Git Bash 安装目录下的 mingw64/bin 目录下即可
+在 Windows 系统上安装 SDKMAN 与 Linux 系统一致
+# 下载安装 $ curl -s &quot;https://get.sdkman.io&quot; | bash $ sdk version SDKMAN 5.11.0+644 # 执行初始化（否则 sdk 命令不可用） $ source &quot;~/.sdkman/bin/sdkman-init.sh&quot; 用法 $ sdk help Usage: sdk &lt;command&gt; [candidate] [version] sdk offline &lt;enable|disable&gt; commands: install or i &lt;candidate&gt; [version] [local-path] uninstall or rm &lt;candidate&gt; &lt;version&gt; list or ls [candidate] use or u &lt;candidate&gt; &lt;version&gt; completion &lt;bash|zsh&gt; default or d &lt;candidate&gt; [version] home or h &lt;candidate&gt; &lt;version&gt; env or e [init|install|clear] current or c [candidate] upgrade or ug [candidate] version or v broadcast or b help offline [enable|disable] selfupdate [force] update flush [archives|tmp|broadcast|version] candidate : the SDK to install: groovy, scala, grails, gradle, kotlin, etc.
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/linux/centos-7%E5%AE%89%E8%A3%85%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E4%BA%8B/" class="link black dim">
+        CentOS-7安装后需要做的几件事
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      修改主机名 $ hostnamectl set-hostname template 设置静态IP # 从 CentOS-7 就开始推荐使用 nmcli 来配置网络了（CentOS-8同样适用） # https://andyx.net/configuring_static_ip_address_in_rhel8_centos8_system_with_nmcli_nmtui_ifcfg/ # 配置IP $ nmcli con mod enp0s3 ipv4.addresses 192.168.1.100/24 # 配置网关 $ nmcli con mod enp0s3 ipv4.gateway 192.168.1.1 # 设置手动模式（dhcp = auto, static = manual） $ nmcli con mod enp0s3 ipv4.method manual # 配置DNS $ nmcli con mod enp0s3 ipv4.dns &quot;8.8.8.8&quot; # 配置开机启动 $ nmcli con mod enp0s3 connection.autoconnect yes # 实际上述命令执行结果依然是存储在 /etc/sysconfig/network-scripts/ifcfg-* 文件中，所以直接按原有方式修改该文件也是可以的 SSH公钥认证 # 密码认证常常不安全，所以采用公钥认证 # 修改 /etc/ssh/sshd_config 文件 # 关闭密码认证 PasswordAuthentication no # 启用公钥认证 PubkeyAuthentication yes # 重启sshd服务即生效 $ systemctl restart sshd # 注意要先将客户机的公钥上传至目标服务器上，否则后面可能就没办法ssh连过去了（密码认证被禁） # 客户机上生成公私钥命令 $ ssh-keygen -t rsa -C &quot;zlikun@studio&quot; # 会生成公私钥文件，私钥文件应妥善保存，不要外泄 # ~/.
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/linux/ssh%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="link black dim">
+        SSH基本用法
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      生成密钥 # 生成RSA密钥对，默认存储于 ~/.ssh/ 目录下，-C 参数指定备注信息 $ ssh-keygen -t rsa [-C &quot;zlikun-dev@hotmail.com&quot;] # ~/.ssh/id_rsa # ~/.ssh/id_rsa.pub # 查看 ssh-keygen 帮助信息 $ man ssh-keygen # 分发密钥，默认发送 ~/.ssh/id_rsa.pub 文件，也可以通过 -i 显示指定 $ ssh-copy-id [-i id_rsa.pub] &lt;username&gt;@&lt;host&gt;[:&lt;port&gt;] # 实际上是把密钥追加到目标服务器的 ~/.ssh/authorized_keys 文件中，所以使用其它方式追加都是可以的 # 如果是第一次手工创建文件，务必注意文件权限问题，设置为只有当前用户有读写权限（600或644）即可 $ ls -al ~/.ssh/authorized_keys -rw------- 1 root root 808 Jan 31 18:52 /root/.ssh/authorized_keys # chmod 600 /root/.ssh/authorized_keys 密钥登录 # 参考上面的步骤将公钥添加到目标服务器上 # 修改目标服务器的SSH配置 $ vim /etc/ssh/sshd_config # 允许密钥认证 PubkeyAuthentication yes # 指定密钥路径（默认值） AuthorizedKeysFile .
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/linux/manjaro%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" class="link black dim">
+        Manjaro基本配置
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      更换源 # 排列选择一个国内源，然后执行更新同步 sudo pacman-mirrors -i -c China -m rank sudo pacman -Syy # 添加Arch源 sudo vim /etc/pacman.conf [archlinuxcn] SigLevel = Optional TrustedOnly Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux-cn/$arch # 更新数据库并安装密钥 sudo pacman -Syy &amp;&amp; sudo pacman -S archlinuxcn-keyring # 升级系统 sudo pacman -Su pacman  pacman 是 Arch 系Linux自带的包管理器，下面是一些常用命令
+ pacman -S package_name # 安装软件 pacman -S extra/package_name # 安装不同仓库中的版本 pacman -Syu # 升级整个系统，y是更新数据库，yy是强制更新，u是升级软件 pacman -Ss string # 在包数据库中查询软件 pacman -Si package_name # 显示软件的详细信息 pacman -Sc # 清除软件缓存，即/var/cache/pacman/pkg目录下的文件 pacman -R package_name # 删除单个软件 pacman -Rs package_name # 删除指定软件及其没有被其他已安装软件使用的依赖关系 pacman -Qs string # 查询已安装的软件包 pacman -Qi package_name # 查询本地安装包的详细信息 pacman -Ql package_name # 获取已安装软件所包含的文件的列表 pacman -U package.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/manjaro" class="link blue hover-black">
+            Tag: manjaro
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/linux/manjaro%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" class="link black dim">
+        Manjaro基本配置
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      更换源 # 排列选择一个国内源，然后执行更新同步 sudo pacman-mirrors -i -c China -m rank sudo pacman -Syy # 添加Arch源 sudo vim /etc/pacman.conf [archlinuxcn] SigLevel = Optional TrustedOnly Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux-cn/$arch # 更新数据库并安装密钥 sudo pacman -Syy &amp;&amp; sudo pacman -S archlinuxcn-keyring # 升级系统 sudo pacman -Su pacman  pacman 是 Arch 系Linux自带的包管理器，下面是一些常用命令
+ pacman -S package_name # 安装软件 pacman -S extra/package_name # 安装不同仓库中的版本 pacman -Syu # 升级整个系统，y是更新数据库，yy是强制更新，u是升级软件 pacman -Ss string # 在包数据库中查询软件 pacman -Si package_name # 显示软件的详细信息 pacman -Sc # 清除软件缓存，即/var/cache/pacman/pkg目录下的文件 pacman -R package_name # 删除单个软件 pacman -Rs package_name # 删除指定软件及其没有被其他已安装软件使用的依赖关系 pacman -Qs string # 查询已安装的软件包 pacman -Qi package_name # 查询本地安装包的详细信息 pacman -Ql package_name # 获取已安装软件所包含的文件的列表 pacman -U package.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/maven" class="link blue hover-black">
+            Tag: maven
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/java/maven%E4%B9%8Bsettings.xml%E9%85%8D%E7%BD%AE/" class="link black dim">
+        Maven之settings.xml配置
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the &#34;License&#34;); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &#34;AS IS&#34; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/java/maven%E4%B9%8B%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA/" class="link black dim">
+        Maven之私服搭建
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      安装 前置
+# Linux CentOS 7 $ cat /etc/redhat-release CentOS Linux release 7.7.1908 (Core) # Java OpenJDK 8 $ yum install java-1.8.0-openjdk-devel $ java -version openjdk version &quot;1.8.0_242&quot; OpenJDK Runtime Environment (build 1.8.0_242-b08) OpenJDK 64-Bit Server VM (build 25.242-b08, mixed mode) 安装
+# https://help.sonatype.com/repomanager2/download # 注意：国内网络可能无法下载，考虑科学上网，或者从其它网站下载 $ curl -OL https://download.sonatype.com/nexus/oss/nexus-latest-bundle.tar.gz # https://help.sonatype.com/repomanager2/installing-and-running $ tar zxvf nexus-2.14.16-01-bundle.tar.gz -C /opt # /opt/nexus-2.14.16-01 Nexus服务程序目录 # /opt/sonatype-work 数据（构件）存放目录 # 创建 nexus 用户，因为 Nexus 不推荐使用 root 用户运行服务 # 注：不能是禁止登录无home目录的虚用户（程序使用 su 切换用户） $ useradd nexus # 修改目录拥有者属性，因为后面将使用 nexus 用户来运行服务 $ chown nexus:nexus -R /opt/nexus-2.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/nexus" class="link blue hover-black">
+            Tag: nexus
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/java/maven%E4%B9%8B%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA/" class="link black dim">
+        Maven之私服搭建
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      安装 前置
+# Linux CentOS 7 $ cat /etc/redhat-release CentOS Linux release 7.7.1908 (Core) # Java OpenJDK 8 $ yum install java-1.8.0-openjdk-devel $ java -version openjdk version &quot;1.8.0_242&quot; OpenJDK Runtime Environment (build 1.8.0_242-b08) OpenJDK 64-Bit Server VM (build 25.242-b08, mixed mode) 安装
+# https://help.sonatype.com/repomanager2/download # 注意：国内网络可能无法下载，考虑科学上网，或者从其它网站下载 $ curl -OL https://download.sonatype.com/nexus/oss/nexus-latest-bundle.tar.gz # https://help.sonatype.com/repomanager2/installing-and-running $ tar zxvf nexus-2.14.16-01-bundle.tar.gz -C /opt # /opt/nexus-2.14.16-01 Nexus服务程序目录 # /opt/sonatype-work 数据（构件）存放目录 # 创建 nexus 用户，因为 Nexus 不推荐使用 root 用户运行服务 # 注：不能是禁止登录无home目录的虚用户（程序使用 su 切换用户） $ useradd nexus # 修改目录拥有者属性，因为后面将使用 nexus 用户来运行服务 $ chown nexus:nexus -R /opt/nexus-2.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/nginx" class="link blue hover-black">
+            Tag: nginx
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/nginx/nginx%E6%90%AD%E5%BB%BA%E7%9B%B4%E6%92%AD%E6%9C%8D%E5%8A%A1/" class="link black dim">
+        Nginx搭建直播服务
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      使用Nginx搭建RTMP直播流服务，提供直播流推送、直播播放、认证鉴权等功能
+ 协议  三大直播协议 RTMP、HTTP-FLV、HLS，RTMP是Adobe公司为Flash播放器开发的私有直播协议，FLV是Adobe公司推出的另一种视频格式，而HTTP-FLV就是将流媒体数据封装成FLV格式并通过HTTP协议传输给客户端，而HLS则是Apple公司基于HTTP协议开发的流媒体传输协议，它会在服务器端将流媒体数据切割成连续的时长较短的ts小文件，并通过m3u8索引文件按序访问ts文件，而客户端只需要按序从服务器上获取ts文件来播放即可。一般RTMP在直播推流中用的多，而HLS则比较适合来播放视频用，但其会生成海量ts小文件，从而造成存储困难，所以一般使用云存储服务（七牛、阿里云等）比较好。
+ 参考
+ https://www.cnblogs.com/upyun/p/9881865.html https://www.jianshu.com/p/32417d8ee5b6  安装 https://github.com/arut/nginx-rtmp-module
+# 系统为 CentOS-7 ，使用 YUM 安装了 Nginx，为了添加 nginx-rtmp-module 模块，所以需要重新编译安装 # 通过 `nginx -V` 命令查看其原始编译信息，重点是其已安装的模块，后面编译安装时这些模块一并装上 $ nginx -V nginx version: nginx/1.16.1 built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC) built with OpenSSL 1.0.2k-fips 26 Jan 2017 TLS SNI support enabled ... ... # http://nginx.org/en/docs/install.html # http://nginx.org/en/docs/configure.html # 下载源码，版本与当前使用 nginx 版本一致 $ curl -OL http://nginx.org/download/nginx-1.16.1.tar.gz $ tar zxvf nginx-1.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/openssh" class="link blue hover-black">
+            Tag: openssh
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/linux/ssh%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="link black dim">
+        SSH基本用法
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      生成密钥 # 生成RSA密钥对，默认存储于 ~/.ssh/ 目录下，-C 参数指定备注信息 $ ssh-keygen -t rsa [-C &quot;zlikun-dev@hotmail.com&quot;] # ~/.ssh/id_rsa # ~/.ssh/id_rsa.pub # 查看 ssh-keygen 帮助信息 $ man ssh-keygen # 分发密钥，默认发送 ~/.ssh/id_rsa.pub 文件，也可以通过 -i 显示指定 $ ssh-copy-id [-i id_rsa.pub] &lt;username&gt;@&lt;host&gt;[:&lt;port&gt;] # 实际上是把密钥追加到目标服务器的 ~/.ssh/authorized_keys 文件中，所以使用其它方式追加都是可以的 # 如果是第一次手工创建文件，务必注意文件权限问题，设置为只有当前用户有读写权限（600或644）即可 $ ls -al ~/.ssh/authorized_keys -rw------- 1 root root 808 Jan 31 18:52 /root/.ssh/authorized_keys # chmod 600 /root/.ssh/authorized_keys 密钥登录 # 参考上面的步骤将公钥添加到目标服务器上 # 修改目标服务器的SSH配置 $ vim /etc/ssh/sshd_config # 允许密钥认证 PubkeyAuthentication yes # 指定密钥路径（默认值） AuthorizedKeysFile .
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/rtmp" class="link blue hover-black">
+            Tag: rtmp
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/nginx/nginx%E6%90%AD%E5%BB%BA%E7%9B%B4%E6%92%AD%E6%9C%8D%E5%8A%A1/" class="link black dim">
+        Nginx搭建直播服务
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      使用Nginx搭建RTMP直播流服务，提供直播流推送、直播播放、认证鉴权等功能
+ 协议  三大直播协议 RTMP、HTTP-FLV、HLS，RTMP是Adobe公司为Flash播放器开发的私有直播协议，FLV是Adobe公司推出的另一种视频格式，而HTTP-FLV就是将流媒体数据封装成FLV格式并通过HTTP协议传输给客户端，而HLS则是Apple公司基于HTTP协议开发的流媒体传输协议，它会在服务器端将流媒体数据切割成连续的时长较短的ts小文件，并通过m3u8索引文件按序访问ts文件，而客户端只需要按序从服务器上获取ts文件来播放即可。一般RTMP在直播推流中用的多，而HLS则比较适合来播放视频用，但其会生成海量ts小文件，从而造成存储困难，所以一般使用云存储服务（七牛、阿里云等）比较好。
+ 参考
+ https://www.cnblogs.com/upyun/p/9881865.html https://www.jianshu.com/p/32417d8ee5b6  安装 https://github.com/arut/nginx-rtmp-module
+# 系统为 CentOS-7 ，使用 YUM 安装了 Nginx，为了添加 nginx-rtmp-module 模块，所以需要重新编译安装 # 通过 `nginx -V` 命令查看其原始编译信息，重点是其已安装的模块，后面编译安装时这些模块一并装上 $ nginx -V nginx version: nginx/1.16.1 built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC) built with OpenSSL 1.0.2k-fips 26 Jan 2017 TLS SNI support enabled ... ... # http://nginx.org/en/docs/install.html # http://nginx.org/en/docs/configure.html # 下载源码，版本与当前使用 nginx 版本一致 $ curl -OL http://nginx.org/download/nginx-1.16.1.tar.gz $ tar zxvf nginx-1.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/sdkman" class="link blue hover-black">
+            Tag: sdkman
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/devops/sdkman%E5%85%A5%E9%97%A8/" class="link black dim">
+        SDKMAN入门
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      SDKMAN 是一款软件开发包管理器，常用于管理JDK等二进制SDK包
+安装 Linux系统下安装比较简单，这里请参照官方文档即可
+$ curl -s &#34;https://get.sdkman.io&#34; | bash Windows系统下则会比较麻烦，因为SDKMAN依赖Linux系统下的一些组件（软件），所以在Windows上安装需要先安装这些依赖的组件
+大致有三种方式
+ 安装 Windows Linux System（WLS） 安装 Cygwin 安装 Git Bash for Windows  做为开发人员通常已经安装了 Git Bash ，所以使用该方式最简单。安装 SDKMAN 之前还需要安装其它缺失工具：curl、unzip和sed，其中curl和sed默认已有安装，zip/unzip则需要手动安装（下载地址）。下载后解压，将zip.exe复制到 Git Bash 安装目录下的 mingw64/bin 目录下即可
+在 Windows 系统上安装 SDKMAN 与 Linux 系统一致
+# 下载安装 $ curl -s &quot;https://get.sdkman.io&quot; | bash $ sdk version SDKMAN 5.11.0+644 # 执行初始化（否则 sdk 命令不可用） $ source &quot;~/.sdkman/bin/sdkman-init.sh&quot; 用法 $ sdk help Usage: sdk &lt;command&gt; [candidate] [version] sdk offline &lt;enable|disable&gt; commands: install or i &lt;candidate&gt; [version] [local-path] uninstall or rm &lt;candidate&gt; &lt;version&gt; list or ls [candidate] use or u &lt;candidate&gt; &lt;version&gt; completion &lt;bash|zsh&gt; default or d &lt;candidate&gt; [version] home or h &lt;candidate&gt; &lt;version&gt; env or e [init|install|clear] current or c [candidate] upgrade or ug [candidate] version or v broadcast or b help offline [enable|disable] selfupdate [force] update flush [archives|tmp|broadcast|version] candidate : the SDK to install: groovy, scala, grails, gradle, kotlin, etc.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/ssh" class="link blue hover-black">
+            Tag: ssh
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/linux/ssh%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="link black dim">
+        SSH基本用法
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      生成密钥 # 生成RSA密钥对，默认存储于 ~/.ssh/ 目录下，-C 参数指定备注信息 $ ssh-keygen -t rsa [-C &quot;zlikun-dev@hotmail.com&quot;] # ~/.ssh/id_rsa # ~/.ssh/id_rsa.pub # 查看 ssh-keygen 帮助信息 $ man ssh-keygen # 分发密钥，默认发送 ~/.ssh/id_rsa.pub 文件，也可以通过 -i 显示指定 $ ssh-copy-id [-i id_rsa.pub] &lt;username&gt;@&lt;host&gt;[:&lt;port&gt;] # 实际上是把密钥追加到目标服务器的 ~/.ssh/authorized_keys 文件中，所以使用其它方式追加都是可以的 # 如果是第一次手工创建文件，务必注意文件权限问题，设置为只有当前用户有读写权限（600或644）即可 $ ls -al ~/.ssh/authorized_keys -rw------- 1 root root 808 Jan 31 18:52 /root/.ssh/authorized_keys # chmod 600 /root/.ssh/authorized_keys 密钥登录 # 参考上面的步骤将公钥添加到目标服务器上 # 修改目标服务器的SSH配置 $ vim /etc/ssh/sshd_config # 允许密钥认证 PubkeyAuthentication yes # 指定密钥路径（默认值） AuthorizedKeysFile .
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/windows" class="link blue hover-black">
+            Tag: windows
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/devops/sdkman%E5%85%A5%E9%97%A8/" class="link black dim">
+        SDKMAN入门
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      SDKMAN 是一款软件开发包管理器，常用于管理JDK等二进制SDK包
+安装 Linux系统下安装比较简单，这里请参照官方文档即可
+$ curl -s &#34;https://get.sdkman.io&#34; | bash Windows系统下则会比较麻烦，因为SDKMAN依赖Linux系统下的一些组件（软件），所以在Windows上安装需要先安装这些依赖的组件
+大致有三种方式
+ 安装 Windows Linux System（WLS） 安装 Cygwin 安装 Git Bash for Windows  做为开发人员通常已经安装了 Git Bash ，所以使用该方式最简单。安装 SDKMAN 之前还需要安装其它缺失工具：curl、unzip和sed，其中curl和sed默认已有安装，zip/unzip则需要手动安装（下载地址）。下载后解压，将zip.exe复制到 Git Bash 安装目录下的 mingw64/bin 目录下即可
+在 Windows 系统上安装 SDKMAN 与 Linux 系统一致
+# 下载安装 $ curl -s &quot;https://get.sdkman.io&quot; | bash $ sdk version SDKMAN 5.11.0+644 # 执行初始化（否则 sdk 命令不可用） $ source &quot;~/.sdkman/bin/sdkman-init.sh&quot; 用法 $ sdk help Usage: sdk &lt;command&gt; [candidate] [version] sdk offline &lt;enable|disable&gt; commands: install or i &lt;candidate&gt; [version] [local-path] uninstall or rm &lt;candidate&gt; &lt;version&gt; list or ls [candidate] use or u &lt;candidate&gt; &lt;version&gt; completion &lt;bash|zsh&gt; default or d &lt;candidate&gt; [version] home or h &lt;candidate&gt; &lt;version&gt; env or e [init|install|clear] current or c [candidate] upgrade or ug [candidate] version or v broadcast or b help offline [enable|disable] selfupdate [force] update flush [archives|tmp|broadcast|version] candidate : the SDK to install: groovy, scala, grails, gradle, kotlin, etc.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/%E7%9B%B4%E6%92%AD" class="link blue hover-black">
+            Tag: 直播
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Post</span>
+    <h1 class="f3 near-black">
+      <a href="https://zlikun.github.io/post/nginx/nginx%E6%90%AD%E5%BB%BA%E7%9B%B4%E6%92%AD%E6%9C%8D%E5%8A%A1/" class="link black dim">
+        Nginx搭建直播服务
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      使用Nginx搭建RTMP直播流服务，提供直播流推送、直播播放、认证鉴权等功能
+ 协议  三大直播协议 RTMP、HTTP-FLV、HLS，RTMP是Adobe公司为Flash播放器开发的私有直播协议，FLV是Adobe公司推出的另一种视频格式，而HTTP-FLV就是将流媒体数据封装成FLV格式并通过HTTP协议传输给客户端，而HLS则是Apple公司基于HTTP协议开发的流媒体传输协议，它会在服务器端将流媒体数据切割成连续的时长较短的ts小文件，并通过m3u8索引文件按序访问ts文件，而客户端只需要按序从服务器上获取ts文件来播放即可。一般RTMP在直播推流中用的多，而HLS则比较适合来播放视频用，但其会生成海量ts小文件，从而造成存储困难，所以一般使用云存储服务（七牛、阿里云等）比较好。
+ 参考
+ https://www.cnblogs.com/upyun/p/9881865.html https://www.jianshu.com/p/32417d8ee5b6  安装 https://github.com/arut/nginx-rtmp-module
+# 系统为 CentOS-7 ，使用 YUM 安装了 Nginx，为了添加 nginx-rtmp-module 模块，所以需要重新编译安装 # 通过 `nginx -V` 命令查看其原始编译信息，重点是其已安装的模块，后面编译安装时这些模块一并装上 $ nginx -V nginx version: nginx/1.16.1 built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC) built with OpenSSL 1.0.2k-fips 26 Jan 2017 TLS SNI support enabled ... ... # http://nginx.org/en/docs/install.html # http://nginx.org/en/docs/configure.html # 下载源码，版本与当前使用 nginx 版本一致 $ curl -OL http://nginx.org/download/nginx-1.16.1.tar.gz $ tar zxvf nginx-1.
+    </div>
+  </div>
+</div>
+
+        
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zlikun.github.io/" >
+    &copy;  负熵为生 2021 
+  </a>
+    <div>
+
+
+
+
+<a href="https://twitter.com/zlikun" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://github.com/zlikun" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Maven on 负熵为生</title>
+    <link>https://zlikun.github.io/tags/maven/</link>
+    <description>Recent content in Maven on 负熵为生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 18 Mar 2020 22:10:13 +0800</lastBuildDate><atom:link href="https://zlikun.github.io/tags/maven/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Maven之settings.xml配置</title>
+      <link>https://zlikun.github.io/post/java/maven%E4%B9%8Bsettings.xml%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Wed, 18 Mar 2020 22:10:13 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/post/java/maven%E4%B9%8Bsettings.xml%E9%85%8D%E7%BD%AE/</guid>
+      <description>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the &amp;#34;License&amp;#34;); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &amp;#34;AS IS&amp;#34; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</description>
+    </item>
+    
+    <item>
+      <title>Maven之私服搭建</title>
+      <link>https://zlikun.github.io/post/java/maven%E4%B9%8B%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Wed, 18 Mar 2020 13:24:12 +0800</pubDate>
+      
+      <guid>https://zlikun.github.io/post/java/maven%E4%B9%8B%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA/</guid>
+      <description>安装 前置
+# Linux CentOS 7 $ cat /etc/redhat-release CentOS Linux release 7.7.1908 (Core) # Java OpenJDK 8 $ yum install java-1.8.0-openjdk-devel $ java -version openjdk version &amp;quot;1.8.0_242&amp;quot; OpenJDK Runtime Environment (build 1.8.0_242-b08) OpenJDK 64-Bit Server VM (build 25.242-b08, mixed mode) 安装
+# https://help.sonatype.com/repomanager2/download # 注意：国内网络可能无法下载，考虑科学上网，或者从其它网站下载 $ curl -OL https://download.sonatype.com/nexus/oss/nexus-latest-bundle.tar.gz # https://help.sonatype.com/repomanager2/installing-and-running $ tar zxvf nexus-2.14.16-01-bundle.tar.gz -C /opt # /opt/nexus-2.14.16-01 Nexus服务程序目录 # /opt/sonatype-work 数据（构件）存放目录 # 创建 nexus 用户，因为 Nexus 不推荐使用 root 用户运行服务 # 注：不能是禁止登录无home目录的虚用户（程序使用 su 切换用户） $ useradd nexus # 修改目录拥有者属性，因为后面将使用 nexus 用户来运行服务 $ chown nexus:nexus -R /opt/nexus-2.</description>
+    </item>
+    
+  </channel>
+</rss>

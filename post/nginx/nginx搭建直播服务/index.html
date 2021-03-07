@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>负熵为生  | Nginx搭建直播服务</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.81.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.1cb140d8ba31d5b2f1114537dd04802a.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+    
+
+    
+    
+    <meta property="og:title" content="Nginx搭建直播服务" />
+<meta property="og:description" content="使用Nginx搭建RTMP直播流服务，提供直播流推送、直播播放、认证鉴权等功能
+ 协议  三大直播协议 RTMP、HTTP-FLV、HLS，RTMP是Adobe公司为Flash播放器开发的私有直播协议，FLV是Adobe公司推出的另一种视频格式，而HTTP-FLV就是将流媒体数据封装成FLV格式并通过HTTP协议传输给客户端，而HLS则是Apple公司基于HTTP协议开发的流媒体传输协议，它会在服务器端将流媒体数据切割成连续的时长较短的ts小文件，并通过m3u8索引文件按序访问ts文件，而客户端只需要按序从服务器上获取ts文件来播放即可。一般RTMP在直播推流中用的多，而HLS则比较适合来播放视频用，但其会生成海量ts小文件，从而造成存储困难，所以一般使用云存储服务（七牛、阿里云等）比较好。
+ 参考
+ https://www.cnblogs.com/upyun/p/9881865.html https://www.jianshu.com/p/32417d8ee5b6  安装 https://github.com/arut/nginx-rtmp-module
+# 系统为 CentOS-7 ，使用 YUM 安装了 Nginx，为了添加 nginx-rtmp-module 模块，所以需要重新编译安装 # 通过 `nginx -V` 命令查看其原始编译信息，重点是其已安装的模块，后面编译安装时这些模块一并装上 $ nginx -V nginx version: nginx/1.16.1 built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC) built with OpenSSL 1.0.2k-fips 26 Jan 2017 TLS SNI support enabled ... ... # http://nginx.org/en/docs/install.html # http://nginx.org/en/docs/configure.html # 下载源码，版本与当前使用 nginx 版本一致 $ curl -OL http://nginx.org/download/nginx-1.16.1.tar.gz $ tar zxvf nginx-1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zlikun.github.io/post/nginx/nginx%E6%90%AD%E5%BB%BA%E7%9B%B4%E6%92%AD%E6%9C%8D%E5%8A%A1/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-08T13:22:01&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-08T13:22:01&#43;08:00" />
+
+<meta itemprop="name" content="Nginx搭建直播服务">
+<meta itemprop="description" content="使用Nginx搭建RTMP直播流服务，提供直播流推送、直播播放、认证鉴权等功能
+ 协议  三大直播协议 RTMP、HTTP-FLV、HLS，RTMP是Adobe公司为Flash播放器开发的私有直播协议，FLV是Adobe公司推出的另一种视频格式，而HTTP-FLV就是将流媒体数据封装成FLV格式并通过HTTP协议传输给客户端，而HLS则是Apple公司基于HTTP协议开发的流媒体传输协议，它会在服务器端将流媒体数据切割成连续的时长较短的ts小文件，并通过m3u8索引文件按序访问ts文件，而客户端只需要按序从服务器上获取ts文件来播放即可。一般RTMP在直播推流中用的多，而HLS则比较适合来播放视频用，但其会生成海量ts小文件，从而造成存储困难，所以一般使用云存储服务（七牛、阿里云等）比较好。
+ 参考
+ https://www.cnblogs.com/upyun/p/9881865.html https://www.jianshu.com/p/32417d8ee5b6  安装 https://github.com/arut/nginx-rtmp-module
+# 系统为 CentOS-7 ，使用 YUM 安装了 Nginx，为了添加 nginx-rtmp-module 模块，所以需要重新编译安装 # 通过 `nginx -V` 命令查看其原始编译信息，重点是其已安装的模块，后面编译安装时这些模块一并装上 $ nginx -V nginx version: nginx/1.16.1 built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC) built with OpenSSL 1.0.2k-fips 26 Jan 2017 TLS SNI support enabled ... ... # http://nginx.org/en/docs/install.html # http://nginx.org/en/docs/configure.html # 下载源码，版本与当前使用 nginx 版本一致 $ curl -OL http://nginx.org/download/nginx-1.16.1.tar.gz $ tar zxvf nginx-1."><meta itemprop="datePublished" content="2020-03-08T13:22:01&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-08T13:22:01&#43;08:00" />
+<meta itemprop="wordCount" content="492">
+<meta itemprop="keywords" content="Nginx,RTMP,直播," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Nginx搭建直播服务"/>
+<meta name="twitter:description" content="使用Nginx搭建RTMP直播流服务，提供直播流推送、直播播放、认证鉴权等功能
+ 协议  三大直播协议 RTMP、HTTP-FLV、HLS，RTMP是Adobe公司为Flash播放器开发的私有直播协议，FLV是Adobe公司推出的另一种视频格式，而HTTP-FLV就是将流媒体数据封装成FLV格式并通过HTTP协议传输给客户端，而HLS则是Apple公司基于HTTP协议开发的流媒体传输协议，它会在服务器端将流媒体数据切割成连续的时长较短的ts小文件，并通过m3u8索引文件按序访问ts文件，而客户端只需要按序从服务器上获取ts文件来播放即可。一般RTMP在直播推流中用的多，而HLS则比较适合来播放视频用，但其会生成海量ts小文件，从而造成存储困难，所以一般使用云存储服务（七牛、阿里云等）比较好。
+ 参考
+ https://www.cnblogs.com/upyun/p/9881865.html https://www.jianshu.com/p/32417d8ee5b6  安装 https://github.com/arut/nginx-rtmp-module
+# 系统为 CentOS-7 ，使用 YUM 安装了 Nginx，为了添加 nginx-rtmp-module 模块，所以需要重新编译安装 # 通过 `nginx -V` 命令查看其原始编译信息，重点是其已安装的模块，后面编译安装时这些模块一并装上 $ nginx -V nginx version: nginx/1.16.1 built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC) built with OpenSSL 1.0.2k-fips 26 Jan 2017 TLS SNI support enabled ... ... # http://nginx.org/en/docs/install.html # http://nginx.org/en/docs/configure.html # 下载源码，版本与当前使用 nginx 版本一致 $ curl -OL http://nginx.org/download/nginx-1.16.1.tar.gz $ tar zxvf nginx-1."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://zlikun.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      负熵为生
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+<a href="https://twitter.com/zlikun" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://github.com/zlikun" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://zlikun.github.io/post/nginx/nginx%E6%90%AD%E5%BB%BA%E7%9B%B4%E6%92%AD%E6%9C%8D%E5%8A%A1/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://zlikun.github.io/post/nginx/nginx%E6%90%AD%E5%BB%BA%E7%9B%B4%E6%92%AD%E6%9C%8D%E5%8A%A1/&amp;text=Nginx%e6%90%ad%e5%bb%ba%e7%9b%b4%e6%92%ad%e6%9c%8d%e5%8a%a1" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://zlikun.github.io/post/nginx/nginx%E6%90%AD%E5%BB%BA%E7%9B%B4%E6%92%AD%E6%9C%8D%E5%8A%A1/&amp;title=Nginx%e6%90%ad%e5%bb%ba%e7%9b%b4%e6%92%ad%e6%9c%8d%e5%8a%a1" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+      <h1 class="f1 athelas mt3 mb1">Nginx搭建直播服务</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-03-08T13:22:01&#43;08:00">March 8, 2020</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><blockquote>
+<p>使用Nginx搭建RTMP直播流服务，提供直播流推送、直播播放、认证鉴权等功能</p>
+</blockquote>
+<h3 id="协议">协议</h3>
+<blockquote>
+<p>三大直播协议 <code>RTMP</code>、<code>HTTP-FLV</code>、<code>HLS</code>，<code>RTMP</code>是Adobe公司为Flash播放器开发的私有直播协议，<code>FLV</code>是Adobe公司推出的另一种视频格式，而<code>HTTP-FLV</code>就是将流媒体数据封装成<code>FLV</code>格式并通过<code>HTTP</code>协议传输给客户端，而<code>HLS</code>则是Apple公司基于<code>HTTP</code>协议开发的流媒体传输协议，它会在服务器端将流媒体数据切割成连续的时长较短的<code>ts</code>小文件，并通过<code>m3u8</code>索引文件按序访问<code>ts</code>文件，而客户端只需要按序从服务器上获取<code>ts</code>文件来播放即可。一般<code>RTMP</code>在直播推流中用的多，而<code>HLS</code>则比较适合来播放视频用，但其会生成海量<code>ts</code>小文件，从而造成存储困难，所以一般使用云存储服务（七牛、阿里云等）比较好。</p>
+</blockquote>
+<p>参考</p>
+<ul>
+<li><a href="https://www.cnblogs.com/upyun/p/9881865.html">https://www.cnblogs.com/upyun/p/9881865.html</a></li>
+<li><a href="https://www.jianshu.com/p/32417d8ee5b6">https://www.jianshu.com/p/32417d8ee5b6</a></li>
+</ul>
+<h3 id="安装">安装</h3>
+<p><a href="https://github.com/arut/nginx-rtmp-module">https://github.com/arut/nginx-rtmp-module</a></p>
+<pre><code># 系统为 CentOS-7 ，使用 YUM 安装了 Nginx，为了添加 nginx-rtmp-module 模块，所以需要重新编译安装
+# 通过 `nginx -V` 命令查看其原始编译信息，重点是其已安装的模块，后面编译安装时这些模块一并装上
+$ nginx -V
+nginx version: nginx/1.16.1
+built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC) 
+built with OpenSSL 1.0.2k-fips  26 Jan 2017
+TLS SNI support enabled
+... ...
+
+# http://nginx.org/en/docs/install.html
+# http://nginx.org/en/docs/configure.html
+# 下载源码，版本与当前使用 nginx 版本一致
+$ curl -OL http://nginx.org/download/nginx-1.16.1.tar.gz
+$ tar zxvf nginx-1.16.1.tar.gz &amp;&amp; cd nginx-1.16.1
+
+# 下载（克隆） nginx-rtmp-module 源码
+# https://www.nginx.com/resources/wiki/modules/index.html
+# https://github.com/arut/nginx-rtmp-module
+$ curl -OL https://github.com/arut/nginx-rtmp-module/archive/v1.2.1.tar.gz
+$ tar zxvf v1.2.1.tar.gz
+
+# YUM安装编译工具链
+# 搜索可用工具包
+$ yum grouplist | more
+# 找到 &quot;Development Tools&quot; 这个工具包，编译构建 nginx 依赖工具比较多，这样一次安装到位比较简单
+$ yum groupinstall Development Tools
+# 安装其它依赖工具
+$ yum install pcre-devel openssl-devel perl-devel perl-ExtUtils-Embed libxml2-devel libxslt-devel gd-devel
+
+# 默认安装模块中包含 ngx_google_perftools_module 模块，安装略麻烦，这里先略过
+# http://nginx.org/en/docs/ngx_google_perftools_module.html
+# https://github.com/gperftools/gperftools/releases/
+# https://www.cnblogs.com/91donkey/p/11513175.html
+
+# 另外 the &quot;--with-ipv6&quot; option is deprecated，所以这个模块也移除掉
+
+# 重新编译安装，加装 nginx-rtmp-module 模块
+$ ./configure \
+--prefix=/usr/share/nginx \
+--sbin-path=/usr/sbin/nginx \
+--modules-path=/usr/lib64/nginx/modules \
+--conf-path=/etc/nginx/nginx.conf \
+--error-log-path=/var/log/nginx/error.log \
+--http-log-path=/var/log/nginx/access.log \
+--http-client-body-temp-path=/var/lib/nginx/tmp/client_body \
+--http-proxy-temp-path=/var/lib/nginx/tmp/proxy \
+--http-fastcgi-temp-path=/var/lib/nginx/tmp/fastcgi \
+--http-uwsgi-temp-path=/var/lib/nginx/tmp/uwsgi \
+--http-scgi-temp-path=/var/lib/nginx/tmp/scgi \
+--pid-path=/run/nginx.pid \
+--lock-path=/run/lock/subsys/nginx \
+--user=nginx \
+--group=nginx \
+--with-file-aio \
+--with-http_ssl_module \
+--with-http_v2_module \
+--with-http_realip_module \
+--with-stream_ssl_preread_module \
+--with-http_addition_module \
+--with-http_xslt_module=dynamic \
+--with-http_image_filter_module=dynamic \
+--with-http_sub_module \
+--with-http_dav_module \
+--with-http_flv_module \
+--with-http_mp4_module \
+--with-http_gunzip_module \
+--with-http_gzip_static_module \
+--with-http_random_index_module \
+--with-http_secure_link_module \
+--with-http_degradation_module \
+--with-http_slice_module \
+--with-http_stub_status_module \
+--with-http_perl_module=dynamic \
+--with-http_auth_request_module \
+--with-mail=dynamic \
+--with-mail_ssl_module \
+--with-pcre --with-pcre-jit \
+--with-stream=dynamic \
+--with-stream_ssl_module \
+--with-debug \
+--with-cc-opt='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -m64 -mtune=generic' \
+--with-ld-opt='-Wl,-z,relro -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -Wl,-E' \
+--add-module=./nginx-rtmp-module-1.2.1
+
+# 编译构建，注意不要执行 `make install`，这里采用平滑更新试
+$ make -j2
+
+# 备份、平滑升级
+$ mv /usr/sbin/nginx /usr/sbin/nginx.old
+$ cp objs/nginx /usr/sbin/
+# 平滑升级实际是一组操作打包成一个命令，具体细节查看命令输出日志即可
+$ make upgrade
+/usr/sbin/nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+kill -USR2 `cat /run/nginx.pid`
+sleep 1
+test -f /run/nginx.pid.oldbin
+kill -QUIT `cat /run/nginx.pid.oldbin`
+
+# 升级完成后可通过 `nginx -V` 再次查看是否安装成功
+# 后面测试RTMP服务端口10000，所以提前加入防火墙
+$ firewall-cmd --add-port=10000/tcp --permanent
+</code></pre><h3 id="配置">配置</h3>
+<p><a href="https://github.com/arut/nginx-rtmp-module">https://github.com/arut/nginx-rtmp-module</a></p>
+<p>推流配置（直播流服务）</p>
+<pre><code>rtmp {
+
+    server {
+
+        listen 10000;
+
+        chunk_size 4000;
+
+        # 直播 | 播放 （不记录数据）
+        application live {
+            live on;
+            record off;
+        }
+
+        # 直播 | 播放 （记录数据，但实测并未真的记录，原因未知）
+        application rtmp {
+
+            # enable live streaming
+            live on;
+
+            # record first 1K of stream
+            record all;
+            record_path /data/live/rtmp;
+            record_max_size 1K;
+
+            # append current timestamp to each flv
+            record_unique on;
+
+            # publish only from localhost
+            # allow publish 127.0.0.1;
+            # deny publish all;
+
+            allow play all;
+        }
+
+        # 直播 | 播放，在http区段中的配置可以作为回放来观看
+        application hls {
+            live on;
+            hls on;
+            hls_path /data/live/hls;
+            hls_fragment 5s;
+            hls_playlist_length 15s;
+            hls_continuous on;
+            hls_cleanup on;
+            hls_nested on;            
+        }
+
+        # 点播，目录下要有视频文件
+        application video {
+            play /data/live/video;
+        }
+
+    }
+}
+</code></pre><p>播放配置（hls）</p>
+<pre><code>server {
+    listen       443 ssl http2 default_server;
+    listen       [::]:443 ssl http2 default_server;
+    server_name  dev.zlikun.com;
+
+    include /etc/nginx/default.d/*.conf;
+
+    # HLS协议直播播放地址，文件目录：/data/live/hls ，实际测试播放不了，原因未知
+    # https://dev.zlikun.com/hls/index.m3u8
+    location /hls {
+        types {
+            application/vnd.apple.mpegurl m3u8;  
+            video/mp2t ts;
+        }
+        root /data/live;
+        add_header Cache-Control no-cache;
+    }
+
+    # 模块 nginx-rtmp-module 源码提供了一些示例，可以这里配置使用
+    # https://dev.zlikun.com/stat
+    location /stat {
+        rtmp_stat all;
+        rtmp_stat_stylesheet stat.xsl;
+    }
+
+    location /stat.xsl {
+        root /usr/share/nginx/nginx-rtmp-module-1.2.1/;
+    }
+
+}
+</code></pre><p>参考</p>
+<ul>
+<li><a href="https://www.cnblogs.com/wunaozai/p/9427730.html">https://www.cnblogs.com/wunaozai/p/9427730.html</a></li>
+<li><a href="https://www.cnblogs.com/lidabo/p/7099501.html">https://www.cnblogs.com/lidabo/p/7099501.html</a></li>
+</ul>
+<h3 id="推流">推流</h3>
+<pre><code># 测试推流地址：rtmp://dev.zlikun.com:10000/live
+# 测试播放地址：rtmp://dev.zlikun.com:10000/live
+
+
+</code></pre><h3 id="鉴权">鉴权</h3>
+<pre><code>
+</code></pre><h3 id="播放">播放</h3>
+<pre><code>
+</code></pre><h3 id="分发">分发</h3>
+<pre><code>
+</code></pre><h3 id="转码">转码</h3>
+<pre><code>
+</code></pre><h3 id="转发">转发</h3>
+<blockquote>
+<p>转发第三方RTMP直播流，比如推给七牛云的直播流，经过Nginx转发，从中添加自定义鉴权逻辑</p>
+</blockquote>
+<pre><code>
+</code></pre><ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/nginx" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Nginx</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/rtmp" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">RTMP</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E7%9B%B4%E6%92%AD" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">直播</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zlikun.github.io/" >
+    &copy;  负熵为生 2021 
+  </a>
+    <div>
+
+
+
+
+<a href="https://twitter.com/zlikun" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://github.com/zlikun" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>
